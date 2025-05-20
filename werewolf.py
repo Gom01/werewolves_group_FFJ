@@ -32,7 +32,7 @@ class WerewolfPlayerInterface(ABC):
 
 class WerewolfPlayer(WerewolfPlayerInterface):
 
-    def __init__(self, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]):
+    def __init__(self, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]) -> None:
         """
         Endpoint appelé par le meneur pour créer une nouvelle partie. 
             
