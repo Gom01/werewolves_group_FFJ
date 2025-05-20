@@ -96,7 +96,7 @@ class ApiCalls:
     """Handles all API communications with players."""
     
     @staticmethod
-    def post_new_game(player: Player, werewolves: List[Optional[str]]) -> bool:
+    def post_new_game(player: Player, players_names: List[str], werewolves: List[Optional[str]]) -> bool:
         """
         Send a POST request to /new_game endpoint.
         
@@ -113,6 +113,7 @@ class ApiCalls:
                 json={
                     "role": player.role, 
                     "player_name": player.name, 
+                    "players_names": players_names,
                     "werewolves": werewolves
                 }, 
                 timeout=API_TIMEOUT
@@ -228,20 +229,22 @@ class GameLeader:
         """
         # Create role distribution
         werewolves = self._assign_roles()
+
+        players_names = [player.name for player in self.players]
         
         # Initialize player states
         success = True
         for player in self.players:
             if player.role == WEREWOLF:  # only show werewolves to each other
-                ack = self.api.post_new_game(player, werewolves)
+                ack = self.api.post_new_game(player, players_names, werewolves)
             else:
-                ack = self.api.post_new_game(player, [])
+                ack = self.api.post_new_game(player, players_names, [])
             if not ack:
                 success = False
                 self.log(GameLogEntry(
                     type="ERROR",
                     content=f"Failed to start game for player {player.name}",
-                    context_data={"werewolves": werewolves}
+                    context_data={"werewolves": werewolves, "players_names": players_names}
                 ))
                 break
         

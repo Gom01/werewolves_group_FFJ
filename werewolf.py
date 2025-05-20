@@ -14,8 +14,8 @@ class Intent(BaseModel):
 class WerewolfPlayerInterface(ABC):
 
     @classmethod
-    def create(cls, name: str, role: str, werewolves: List[str]) -> 'WerewolfPlayerInterface':
-        return cls(name, role, werewolves)
+    def create(cls, name: str, role: str, players_names: List[str], werewolves: List[str]) -> 'WerewolfPlayerInterface':
+        return cls(name, role, players_names, werewolves)
 
     @abstractmethod
     def speak(self) -> str:
@@ -28,19 +28,18 @@ class WerewolfPlayerInterface(ABC):
         pass
 
 
-PLAYER_NAMES: List[str] = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gabrielle"]
-
 
 
 class WerewolfPlayer(WerewolfPlayerInterface):
 
-    def __init__(self, name: str, role: str, werewolves: List[str]):
+    def __init__(self, name: str, role: str, players_names: List[str], werewolves: List[str]):
         """
         Endpoint appelé par le meneur pour créer une nouvelle partie. 
             
         Args:
             name: "Aline" ou "Benjamin" ou "Chloe" ou "David" ou "Elise" ou "Frédéric" ou "Gabrielle"
             role: "villageois" ou "loup-garou" ou "voyante"
+            players_names: liste des noms de tous les joueurs
             werewolves: liste des joueurs qui sont des loups-garous, vide si le joueur est un villageois
         """
         pass  # TODO implement me

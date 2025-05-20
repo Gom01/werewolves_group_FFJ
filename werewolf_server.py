@@ -12,11 +12,11 @@ def create_app():
         Endpoint appelé par le meneur pour créer une nouvelle partie. 
             
         Args:
-            role: Le rôle du joueur ("loup-garou", "voyante", "villageois"). Exemple:
             ```json
             {
                 "role": "villageois",
                 "player_name": "Aline",
+                "players_names": ["Aline", "Benjamin", "Chloe"],
                 "werewolves": ["Benjamin", "Chloe"]  # vide si le joueur est un villageois
             }
             ```
@@ -26,11 +26,12 @@ def create_app():
 
         role = request.json.get("role")
         player_name = request.json.get("player_name")
+        players_names = request.json.get("players_names")
         werewolves = request.json.get("werewolves")
         assert role in ["villageois", "voyante", "loup-garou"], "Role invalide"
         assert player_name is not None, "Nom de joueur manquant"
 
-        app.config['WerewolfPlayer'] = WerewolfPlayer.create(player_name, role, werewolves.copy())
+        app.config['WerewolfPlayer'] = WerewolfPlayer.create(player_name, role, players_names, werewolves.copy())
 
         return jsonify({"ack": True})
     
