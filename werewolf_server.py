@@ -1,5 +1,7 @@
+import sys
 from flask import Flask, request, jsonify
 from werewolf import WerewolfPlayer
+import logging
 
 def create_app():
     app = Flask(__name__)
@@ -29,12 +31,18 @@ def create_app():
         players_names = request.json.get("players_names")
         werewolves = request.json.get("werewolves")
         assert role in ["villageois", "voyante", "loup-garou"], "Role invalide"
-        assert player_name is not None, "Nom de joueur manquant"
+        assert player_name is not None, f"Nom de joueur manquant, player_name: {player_name}"
+        assert players_names is not None, f"Liste de joueurs manquante, players_names: {players_names}"
+        assert isinstance(players_names, list), f"Liste de joueurs invalide, players_names: {players_names}"
+        assert len(players_names) > 0, f"Liste de joueurs vide, players_names: {players_names}"
+        
+        player = WerewolfPlayer.create(player_name, role, players_names.copy(), werewolves.copy())
+        if player:
+            app.config['WerewolfPlayer'] = player
+            return jsonify({"ack": True})
+        else:
+            return jsonify({"ack": False})
 
-        app.config['WerewolfPlayer'] = WerewolfPlayer.create(player_name, role, players_names, werewolves.copy())
-
-        return jsonify({"ack": True})
-    
     
     @app.route('/speak', methods=['POST'])
     def speak():
@@ -105,19 +113,32 @@ def create_app():
     return app
 
 def run_app(port):
+    # Suppress Flask (Werkzeug) access logs
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)  # or logging.CRITICAL to suppress even more
+
     app = create_app()
     app.run(debug=False, port=port, host='localhost')
 
 if __name__ == '__main__':
+
+    # if a list of ports is provided, use it
+    if len(sys.argv) > 1:
+        ports = [int(port) for port in sys.argv[1:]]
+        print(f"Using ports: {ports}")
+    else:
+        ports = range(5021, 5028) # by default, ports 5021 to 5027 inclusive
+
     import multiprocessing
     
     processes = []
     
-    for port in range(5021, 5028):  # Ports 5021 to 5027 inclusive
+    for port in ports:  
         p = multiprocessing.Process(target=run_app, args=(port,))
         p.start()
         processes.append(p)
         print(f"Started server on port {port}")
+        print(f"To publish using ngrok:     ngrok http {port}")
     
     # Wait for all processes to complete
     for p in processes:

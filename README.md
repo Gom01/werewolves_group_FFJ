@@ -28,5 +28,28 @@ python3 game_leader.py
 [projet_loups_garous.pdf](projet_loups_garous.pdf)
 
 
+# How to publish using ngrok
 
+## Install ngrok
 
+https://dashboard.ngrok.com/get-started/setup/
+
+## Get an ngrok authtoken
+
+https://dashboard.ngrok.com/get-started/your-authtoken
+
+## Start your player server
+
+For example, to start the player server on port 5021, run:
+
+```bash
+python3 werewolf_server.py 5021
+```
+
+## Run ngrok
+
+```bash
+ngrok http 5021
+```
+
+Then copy the ngrok URL and share it with the game leader.

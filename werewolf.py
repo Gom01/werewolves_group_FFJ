@@ -42,7 +42,9 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             players_names: liste des noms de tous les joueurs
             werewolves: liste des joueurs qui sont des loups-garous, vide si le joueur est un villageois
         """
-        pass  # TODO implement me
+        self.name = name
+        print(f"WerewolfPlayer {self.name} created")        
+        # TODO implement me
 
     def speak(self) -> str:
         """
@@ -57,7 +59,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             Un joueur peut décider de ne pas parler (retourner un `speech` vide)
             
         """
-        pass  # TODO implement me
+        print(f"{self.name} is given the floor")
+        # TODO implement me
 
     def notify(self, message: str) -> Intent:
         """
@@ -91,4 +94,5 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 vote_for: "Aline" | "Benjamin" | "Chloe" | "David" | "Elise" | "Frédéric" | "Gabrielle" | None
 
         """
-        pass  # TODO implement me
+        print(f"{self.name} received message: {message}")
+        # TODO implement me

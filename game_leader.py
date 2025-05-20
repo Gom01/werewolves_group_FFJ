@@ -622,10 +622,12 @@ class GameLeader:
 
     def night_time(self) -> Optional[Player]:
 
+        msg = "C'est la nuit, tout le village s’endort, les joueurs ferment les yeux."
         self.log(GameLogEntry(
             type="NIGHT_START",
-            content="C’est la nuit, tout le village s’endort, les joueurs ferment les yeux."
+            content=msg
         ))
+        self.announce_to_all(msg)
 
         # voyante; on lui demande de sonder un joueur; on lui annonce le rôle de ce joueur.
         seer: Optional[Player] = next((player for player in self.players_actives() if player.role == SEER), None)
