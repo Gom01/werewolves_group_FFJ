@@ -6,6 +6,11 @@ Codebase for our project at [ISC](https://isc.hevs.ch/) to play a game of "Loups
 
 ## How to run
 
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
 First, implement your `WerewolfPlayer` in `werewolf.py`
 
 Start the players with:
