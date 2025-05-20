@@ -18,7 +18,8 @@ def create_app():
             {
                 "role": "villageois",
                 "player_name": "Aline",
-                "players_names": ["Aline", "Benjamin", "Chloe"],
+                "players_names": ["Aline", "Benjamin", "Chloe", ...],
+                "werewolves_count": 2 (the total # of werewolves)
                 "werewolves": ["Benjamin", "Chloe"]  # vide si le joueur est un villageois
             }
             ```
@@ -29,6 +30,7 @@ def create_app():
         role = request.json.get("role")
         player_name = request.json.get("player_name")
         players_names = request.json.get("players_names")
+        werewolves_count = request.json.get("werewolves_count")
         werewolves = request.json.get("werewolves")
         assert role in ["villageois", "voyante", "loup-garou"], "Role invalide"
         assert player_name is not None, f"Nom de joueur manquant, player_name: {player_name}"
@@ -36,7 +38,7 @@ def create_app():
         assert isinstance(players_names, list), f"Liste de joueurs invalide, players_names: {players_names}"
         assert len(players_names) > 0, f"Liste de joueurs vide, players_names: {players_names}"
         
-        player = WerewolfPlayer.create(player_name, role, players_names.copy(), werewolves.copy())
+        player = WerewolfPlayer.create(player_name, role, players_names.copy(), werewolves_count, werewolves.copy())
         if player:
             app.config['WerewolfPlayer'] = player
             return jsonify({"ack": True})
@@ -102,7 +104,7 @@ def create_app():
             {
                 "want_to_speak": True | False,
                 "want_to_interrupt": True | False,
-                "vote_for": "Aline" | "Benjamin" | "Chloe" | "David" | "Elise" | "Frédéric" | "Gabrielle" | None
+                "vote_for": "Aline" | "Benjamin" | ... | None
             }
             ```
         """

@@ -14,8 +14,8 @@ class Intent(BaseModel):
 class WerewolfPlayerInterface(ABC):
 
     @classmethod
-    def create(cls, name: str, role: str, players_names: List[str], werewolves: List[str]) -> 'WerewolfPlayerInterface':
-        return cls(name, role, players_names, werewolves)
+    def create(cls, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]) -> 'WerewolfPlayerInterface':
+        return cls(name, role, players_names, werewolves_count, werewolves)
 
     @abstractmethod
     def speak(self) -> str:
@@ -32,19 +32,21 @@ class WerewolfPlayerInterface(ABC):
 
 class WerewolfPlayer(WerewolfPlayerInterface):
 
-    def __init__(self, name: str, role: str, players_names: List[str], werewolves: List[str]):
+    def __init__(self, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]):
         """
         Endpoint appelé par le meneur pour créer une nouvelle partie. 
             
         Args:
-            name: "Aline" ou "Benjamin" ou "Chloe" ou "David" ou "Elise" ou "Frédéric" ou "Gabrielle"
-            role: "villageois" ou "loup-garou" ou "voyante"
+            name: "Aline" par exemple
+            role: "villageois" | "loup-garou" | "voyante"
             players_names: liste des noms de tous les joueurs
+            werewolves_count: nombre de loups-garous
             werewolves: liste des joueurs qui sont des loups-garous, vide si le joueur est un villageois
         """
         self.name = name
         print(f"WerewolfPlayer {self.name} created")        
         # TODO implement me
+
 
     def speak(self) -> str:
         """
@@ -61,6 +63,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         """
         print(f"{self.name} is given the floor")
         # TODO implement me
+        return ""
+    
 
     def notify(self, message: str) -> Intent:
         """
@@ -88,11 +92,12 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             message: "C'est le matin, le village se réveille. Aline a été tuée cette nuit. Aline était une villageoise."
         
         Returns:
-            Une Intent contenant les actions du joueur. Schéma:
+            Une Intent (voir la classe ci-dessus l. 8) contenant les actions du joueur. Schéma:
                 want_to_speak: True | False,
                 want_to_interrupt: True | False,
-                vote_for: "Aline" | "Benjamin" | "Chloe" | "David" | "Elise" | "Frédéric" | "Gabrielle" | None
+                vote_for: "Aline" | "Benjamin" | ... | None
 
         """
         print(f"{self.name} received message: {message}")
         # TODO implement me
+        return Intent(want_to_speak=False, want_to_interrupt=False, vote_for="")

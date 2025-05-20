@@ -96,7 +96,7 @@ class ApiCalls:
     """Handles all API communications with players."""
     
     @staticmethod
-    def post_new_game(player: Player, players_names: List[str], werewolves: List[Optional[str]]) -> bool:
+    def post_new_game(player: Player, players_names: List[str], werewolves_cnt:int, werewolves: List[Optional[str]]) -> bool:
         """
         Send a POST request to /new_game endpoint.
         
@@ -114,11 +114,12 @@ class ApiCalls:
                     "role": player.role, 
                     "player_name": player.name, 
                     "players_names": players_names,
+                    "werewolves_count" : werewolves_cnt,
                     "werewolves": werewolves
                 }, 
                 timeout=API_TIMEOUT
             )
-            LOG.debug(f"<-- new_game response from {player.name}: {response.text}")
+            LOG.debug(f"<-- new_game response from {player.name}: {str(response.text).strip()}")
             response.raise_for_status()
             return bool(response.json()["ack"])
         except Exception as e:
@@ -136,7 +137,7 @@ class ApiCalls:
         try:
             LOG.debug(f"--> speech for player {player.name}")
             response = requests.post(f"{player.api_endpoint}/speak", timeout=API_TIMEOUT)
-            LOG.debug(f"<-- speech response from {player.name}: {response.text}")
+            LOG.debug(f"<-- speech response from {player.name}: {str(response.text).strip()}")
             response.raise_for_status()
             j = response.json()
             # check if the response is valid
@@ -166,7 +167,7 @@ class ApiCalls:
         try:
             LOG.debug(f"--> notify for {player.name}: {message}")
             response = requests.post(f"{player.api_endpoint}/notify", json={"message": message}, timeout=API_TIMEOUT)
-            LOG.debug(f"<-- notify response from {player.name}: {response.text}")
+            LOG.debug(f"<-- notify response from {player.name}: {str(response.text).strip()}")
             response.raise_for_status()
             j = response.json()
             # check if the response is valid
@@ -210,7 +211,7 @@ class GameLeader:
         """
         Get a list of all active players.
         """
-        return [player for player in self.players if player.is_alive and player.name != exclude_player]
+        return [p for p in self.players if p.is_alive and p.name != exclude_player]
 
 
     def last_player_to_speak(self) -> Optional[str]:
@@ -236,9 +237,9 @@ class GameLeader:
         success = True
         for player in self.players:
             if player.role == WEREWOLF:  # only show werewolves to each other
-                ack = self.api.post_new_game(player, players_names, werewolves)
+                ack = self.api.post_new_game(player, players_names, len(werewolves), werewolves)
             else:
-                ack = self.api.post_new_game(player, players_names, [])
+                ack = self.api.post_new_game(player, players_names, len(werewolves), [])
             if not ack:
                 success = False
                 self.log(GameLogEntry(
@@ -336,19 +337,26 @@ class GameLeader:
         return self.api.post_notify(player, msg)
 
 
-    def print_game_summary(self) -> None:
+    def print_game_summary(self, verbose: bool = False) -> None:
         # print a summary of the game so far
         LOG.info("*" * 80)
         LOG.info(f"Game summary:")
         LOG.info(f"Initial werewolves: {[player.name for player in self.players if player.role == WEREWOLF]}")
         LOG.info(f"Initial seer: {name(next((player for player in self.players if player.role == SEER), None))}")
         
-        # list who has been eliminated since last night
-        for log_entry in self.__game_log:#[::-1]:
-            if log_entry.type == "VOTE_RESULT":
-                LOG.info(f"Villageois ont éliminé   {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
-            if log_entry.type == "MORNING_VICTIM":
-                LOG.info(f"Loups-garous ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
+        
+        if verbose:
+            # litst all messages
+            for log_entry in self.__game_log:
+                actor_name = f"[{log_entry.actor_name}]" if log_entry.actor_name != "GameLeader" else ""
+                LOG.info(f"{log_entry.type}: {actor_name} {log_entry.content}")
+        else:
+            # list who has been eliminated since last night
+            for log_entry in self.__game_log:
+                if log_entry.type == "VOTE_RESULT":
+                    LOG.info(f"Villageois ont éliminé   {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
+                if log_entry.type == "MORNING_VICTIM":
+                    LOG.info(f"Loups-garous ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
         
         LOG.info(f"Active players: {name(self.players_actives())}")
         LOG.info(f"Active werewolves: {[player.name for player in self.players_actives() if player.role == WEREWOLF]}")
@@ -356,11 +364,11 @@ class GameLeader:
         LOG.info("*" * 80)
 
 
-    def announce_to_all(self, msg: str) -> List[Optional[Intent]]:
+    def announce_to_all(self, msg: str, exclude_player: Optional[str] = None) -> List[Optional[Intent]]:
         """
         Announce a message to all active players asynchronously using ThreadPoolExecutor.
         """
-        active_players = self.players_actives()
+        active_players = [player for player in self.players_actives() if player.name != exclude_player]
         with ThreadPoolExecutor(max_workers=len(active_players)) as executor:
             futures = [executor.submit(self.api.post_notify, player, msg) for player in active_players]
             # only consider valid responses
@@ -393,7 +401,7 @@ class GameLeader:
                 content=msg,
                 context_data={"reason": "no_speech_response"}
             ))
-            return self.announce_to_all(msg)
+            return self.announce_to_all(msg, exclude_player=speaker.name)
         else:
             # log the speech
             self.log(GameLogEntry(
@@ -401,7 +409,7 @@ class GameLeader:
                 actor_name=speaker.name,
                 content=speech
             ))            
-            return self.announce_to_all(f"{speaker.name} a dit: {speech}")
+            return self.announce_to_all(f"{speaker.name} a dit: {speech}", exclude_player=speaker.name)
 
 
     def choose_next_speaker(self, intents: List[Intent], discussion_round: int) -> Optional[Player]:
@@ -428,7 +436,7 @@ class GameLeader:
         if len(valid_interrupts) > 0:
             interruptor: Player = self.get_player_by_name(random.choice(valid_interrupts))
             interruptor.number_interruptions += 1
-            LOG.debug(f"interruptor: {name(interruptor)}")
+            LOG.debug(f"INTERRUPTOR: {name(interruptor)}")
             return interruptor
         
         # hard limits if too many rounds
@@ -436,31 +444,34 @@ class GameLeader:
             LOG.debug(f"discussion_round > MAX_ROUNDS: {discussion_round}")
             return None
         
-        # first, add 4 * players if  want_to_speak
-        candidates: List[Player] = [self.get_player_by_name(player_name) for player_name in valid_want_to_speak] * 4
-        LOG.debug(f"candidates: {name(candidates)}")
+        # first, add 5 * players if  want_to_speak
+        candidates: List[Player] = [self.get_player_by_name(player_name) for player_name in valid_want_to_speak] * 5
+        LOG.debug(f"want_to_speak candidates: {name(candidates)}")
         
-        # then add slient players
+        # then add silent players
         for player in self.players_actives(self.last_player_to_speak()):
             haven_t_spoken_since = self.round - player.last_spoke_at_round()
             # add multiple times if haven't spoken for a long time
-            factor = round(math.exp(0.06 * haven_t_spoken_since))
-            LOG.debug(f"player {player.name} hasn't spoken for {haven_t_spoken_since} rounds, factor: {factor}")
+            factor = min(30, math.floor(math.exp(0.15 * haven_t_spoken_since)) - 1)
+            LOG.debug(f"silent player: {player.name} hasn't spoken for {haven_t_spoken_since} rounds, factor: {factor}")
             candidates.extend([player] * factor)
 
         # then remove players that have spoken too much
         total_speeches = sum(len(player.spoke_at_rounds) for player in self.players_actives()) + 1
-        for player in candidates:
+        for player in self.players_actives():
             speech_ratio = len(player.spoke_at_rounds) / total_speeches
-            LOG.debug(f"player {player.name} has spoken {len(player.spoke_at_rounds)} times out of {total_speeches}, speech_ratio: {speech_ratio}")
-            for _ in range(int(speech_ratio * 4)):
+            factor = int(speech_ratio * 3)
+            LOG.debug(f"chatty player: {player.name} has spoken {len(player.spoke_at_rounds)} times out of {total_speeches}, speech_ratio: {speech_ratio}, factor: {factor}")
+            for _ in range(factor):
                 if player in candidates:
                     candidates.remove(player)
 
         # add multiple None to candidate list. pick a None --> stop this discussion
-        multiplier = ((len(candidates) * discussion_round )// 2)
-        candidates.extend([None] *  multiplier)
-        LOG.debug(f"number of None added: {multiplier}")
+        # smoothly increases from near 0 to 50 between x = 10 and x = 20 using a scaled sigmoid curve.
+        factor = int(50 / (1 + math.exp(-1.5 * (discussion_round - 15))))
+        candidates.extend([None] *  factor)
+        LOG.debug(f"number of None added: {factor}")
+        LOG.debug(f"candidates: {name(candidates)}")
 
         if len(candidates) == 0:
             LOG.debug(f"no candidates, returning None")
@@ -568,10 +579,10 @@ class GameLeader:
         Check if the vote is for a valid player.
 
         Args:
-            votes: The list of intents.vote_for to validate
+            votes: The list of intents to validate
 
         Returns:
-            The list of validated votes
+            The list of validated votes, each tuple is (player_name, vote_for)
         """
         valid_votes: List[Tuple[str, str]] = []
         for intent in votes:
@@ -659,15 +670,17 @@ class GameLeader:
         # loup garous votent
         loup_garous = [player for player in self.players_actives() if player.role == WEREWOLF]
         LOG.debug(f"loup_garous: {name(loup_garous)}")
+        msg = f"Les Loups-Garous se réveillent, se reconnaissent et désignent une nouvelle victime !!!"
+        self.log(GameLogEntry(
+            type="WEREWOLF_VOTE_ANNOUNCEMENT",
+            content=msg,
+            context_data={"loup_garous": [name(loupgarou) for loupgarou in loup_garous]}
+        ))
+        last_vote = ""
         victim = None
         rounds = 0
         while victim is None and rounds < 4:  # LATER always use 4?
-            msg = f"Les Loups-Garous se réveillent, se reconnaissent et désignent une nouvelle victime !!!"
-            self.log(GameLogEntry(
-                type="WEREWOLF_VOTE",
-                content=msg,
-                context_data={"loup_garous": [name(loupgarou) for loupgarou in loup_garous]}
-            ))
+            msg = f"Les Loups-Garous votent pour une nouvelle victime !!! {last_vote}"
             votes = []
             for loupgaroup in loup_garous: 
                 intents = self.announce_to_one(loupgaroup, msg)
@@ -685,6 +698,7 @@ class GameLeader:
                 self.eliminate_player(victim, "night")
                 LOG.debug(f"victim eliminated: {name(victim)}")
             else:
+                last_vote = f"Dernier vote: " + ", ".join([f"{i.player_name} a voté pour {i.vote_for}" for i in votes])
                 LOG.debug(f"no consensus found, rounds: {rounds}")
             rounds += 1
                 
@@ -712,20 +726,14 @@ if __name__ == "__main__":
             # NIGHT TIME
             victim = game.night_time()
             if game.check_if_game_is_over() is not None:
-                game.print_game_summary()
-                game.log(GameLogEntry(
-                    type="GAME_OVER",
-                    content=f"Game over! {game.check_if_game_is_over()} win!"
-                ))
                 break
             
             # DAY TIME
             game.day_time(victim)
             if game.check_if_game_is_over() is not None:
-                game.print_game_summary()
-                game.log(GameLogEntry(
-                    type="GAME_OVER",
-                    content=f"Game over! {game.check_if_game_is_over()} win!"
-                ))
                 break
-            
+        game.print_game_summary(verbose=True)
+        game.log(GameLogEntry(
+            type="GAME_OVER",
+            content=f"Game over! {game.check_if_game_is_over()} win!"
+        ))
