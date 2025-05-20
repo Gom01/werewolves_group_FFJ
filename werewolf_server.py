@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from werewolf import PseudoRandomWerewolfPlayer
+from werewolf import WerewolfPlayer
+
 def create_app():
     app = Flask(__name__)
     
@@ -29,7 +30,7 @@ def create_app():
         assert role in ["villageois", "voyante", "loup-garou"], "Role invalide"
         assert player_name is not None, "Nom de joueur manquant"
 
-        app.config['WerewolfPlayer'] = PseudoRandomWerewolfPlayer.create(player_name, role, werewolves.copy())
+        app.config['WerewolfPlayer'] = WerewolfPlayer.create(player_name, role, werewolves.copy())
 
         return jsonify({"ack": True})
     

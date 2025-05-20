@@ -179,6 +179,7 @@ class GameLeader:
         Args:
             player_ids: List of player identifiers
         """
+        # list of players. players are not removed from this list, but set to is_alive = False
         self.players: List[Player] = players
         self.__game_log: List[GameLogEntry] = []  # don't call this directly, use log() instead
         self.api: ApiCalls = ApiCalls()
@@ -314,22 +315,33 @@ class GameLeader:
         """
         assert player in self.players and player.is_alive, f"{player.name} is not in the game or is not alive"
         player.is_alive = False
-        self.players.remove(player)
         
-        # Log the elimination
-        self.log(GameLogEntry(
-            type="ELIMINATION",
-            target_name=player.name,
-            content=f"Le/a joueur.euse {player.name} a été éliminé.e de la partie",
-            context_data={"role": player.role, "phase": phase}
-        ))
-
 
     def announce_to_one(self, player: Player, msg: str) -> Optional[Intent]:
         """ 
         Announce a message to a single player.
         """
         return self.api.post_notify(player, msg)
+
+
+    def print_game_summary(self) -> None:
+        # print a summary of the game so far
+        LOG.info("*" * 80)
+        LOG.info(f"Game summary:")
+        LOG.info(f"Initial werewolves: {[player.name for player in self.players if player.role == WEREWOLF]}")
+        LOG.info(f"Initial seer: {name(next((player for player in self.players if player.role == SEER), None))}")
+        
+        # list who has been eliminated since last night
+        for log_entry in self.__game_log:#[::-1]:
+            if log_entry.type == "VOTE_RESULT":
+                LOG.info(f"Villageois ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
+            if log_entry.type == "MORNING_VICTIM":
+                LOG.info(f"Loups-garous ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
+        
+        LOG.info(f"Active players: {name(self.players_actives())}")
+        LOG.info(f"Active werewolves: {[player.name for player in self.players_actives() if player.role == WEREWOLF]}")
+
+        LOG.info("*" * 80)
 
 
     def announce_to_all(self, msg: str) -> List[Optional[Intent]]:
@@ -434,6 +446,9 @@ class GameLeader:
         candidates.extend([None] *  multiplier)
         LOG.debug(f"number of None added: {multiplier}")
 
+        if len(candidates) == 0:
+            LOG.debug(f"no candidates, returning None")
+            return None
         
         # choose at random. 
         chosen = random.choice(candidates)
@@ -445,7 +460,7 @@ class GameLeader:
 
 
     def day_time(self, victim: Optional[Player]) -> None:
-
+    
         rumors = self.generate_rumors()
         
         # annonce de la victime de la nuit passée
@@ -454,7 +469,7 @@ class GameLeader:
             self.log(GameLogEntry(
                 type="MORNING_VICTIM",
                 content=announcement,
-                context_data={"victim": None, "rumors": rumors}
+                context_data={"victim": None, "victim_role": None, "rumors": rumors}
             ))
         else:
             announcement = f"""C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, {victim.name} a été mangé.e par les loups-garous. Son rôle était {victim.role}. {rumors}"""
@@ -464,6 +479,8 @@ class GameLeader:
                 context_data={"victim": victim.name, "victim_role": victim.role, "rumors": rumors}
             ))
         intents = self.announce_to_all(announcement)
+
+        self.print_game_summary()
 
         # débat
         discussion_round: int = 0
@@ -504,8 +521,7 @@ class GameLeader:
         announcement = "Il est temps de voter. Donnez maintenant votre intention de vote."
         self.log(GameLogEntry(
             type="VOTE_NOW",
-            content=announcement,
-            context_data={"public": True}
+            content=announcement
         ))
         intents = self.announce_to_all(announcement)
         valid_votes = self.validate_votes(intents)
@@ -561,9 +577,9 @@ class GameLeader:
         """
         votes_for = Counter([vote[1] for vote in valid_votes])
         
-        # If there is only one player voted for, return it
         if len(votes_for) == 0:
             return None  # no votes, no victim
+        # If there is only one player voted for, return it
         elif len(votes_for) == 1:  # pick the only one
             return self.get_player_by_name(votes_for.most_common(1)[0][0])
         
@@ -592,7 +608,7 @@ class GameLeader:
 
         self.log(GameLogEntry(
             type="NIGHT_START",
-            content="C’est la nuit, tout le village s’endort, les joueurs ferment les yeux"
+            content="C’est la nuit, tout le village s’endort, les joueurs ferment les yeux."
         ))
 
         # voyante; on lui demande de sonder un joueur; on lui annonce le rôle de ce joueur.
@@ -678,17 +694,23 @@ if __name__ == "__main__":
         print("Failed to start game")
         exit(1)
     else:
+        game.print_game_summary()
         while True:
+
+            # NIGHT TIME
             victim = game.night_time()
             if game.check_if_game_is_over() is not None:
+                game.print_game_summary()
                 game.log(GameLogEntry(
                     type="GAME_OVER",
                     content=f"Game over! {game.check_if_game_is_over()} win!"
                 ))
                 break
             
+            # DAY TIME
             game.day_time(victim)
             if game.check_if_game_is_over() is not None:
+                game.print_game_summary()
                 game.log(GameLogEntry(
                     type="GAME_OVER",
                     content=f"Game over! {game.check_if_game_is_over()} win!"
