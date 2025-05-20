@@ -5,6 +5,7 @@ from collections import Counter
 import requests
 from concurrent.futures import ThreadPoolExecutor
 import math
+import json
 
 from app import Logger, WebLogger, GameLogEntry
 
@@ -46,8 +47,6 @@ API_TIMEOUT: int = 10 # seconds
 
 
 
-# setup logging
-logging.basicConfig(level=logging.INFO)
 
 
 class Player(BaseModel):
@@ -122,7 +121,7 @@ class ApiCalls:
             response.raise_for_status()
             return bool(response.json()["ack"])
         except Exception as e:
-            print(f"Error in post_new_game for {player.name}: {str(e)}")
+            LOG.warning(f"Error in post_new_game for {player.name}: {str(e)}")
             return False
     
     @staticmethod
@@ -138,12 +137,17 @@ class ApiCalls:
             response = requests.post(f"{player.api_endpoint}/speak", timeout=API_TIMEOUT)
             LOG.debug(f"<-- speech response from {player.name}: {response.text}")
             response.raise_for_status()
-            speech = response.json()["speech"]
+            j = response.json()
+            # check if the response is valid
+            assert type(j) == dict, f"Response is not a dictionary: {j}"
+            assert "speech" in j, f"speech is not in the response: {j}"
+            speech = j["speech"]
             assert type(speech) == str, f"Speech is not a string: {speech}"
-            assert len(speech) > 0, f"Speech is empty: {speech}"
+            if len(speech) == 0:
+                LOG.warning(f"Speech is empty for {player.name}")
             return speech
         except Exception as e:
-            print(f"Error in post_speech for {player.name}: {str(e)}")
+            LOG.warning(f"Error in post_speech for {player.name}: {str(e)}")
             return None
     
     @staticmethod
@@ -164,9 +168,14 @@ class ApiCalls:
             LOG.debug(f"<-- notify response from {player.name}: {response.text}")
             response.raise_for_status()
             j = response.json()
+            # check if the response is valid
+            assert type(j) == dict, f"Response is not a dictionary: {j}"
+            assert "want_to_speak" in j, f"want_to_speak is not in the response: {j}"
+            assert "want_to_interrupt" in j, f"want_to_interrupt is not in the response: {j}"
+            assert "vote_for" in j, f"vote_for is not in the response: {j}"
             return Intent(player_name=player.name, want_to_speak=j["want_to_speak"], want_to_interrupt=j["want_to_interrupt"], vote_for=j["vote_for"])
         except Exception as e:
-            print(f"Error in post_notify for player {player.name}: {e}")
+            LOG.warning(f"Error in post_notify for player {player.name}: {e}")
             return None
 
 
@@ -334,7 +343,7 @@ class GameLeader:
         # list who has been eliminated since last night
         for log_entry in self.__game_log:#[::-1]:
             if log_entry.type == "VOTE_RESULT":
-                LOG.info(f"Villageois ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
+                LOG.info(f"Villageois ont éliminé   {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
             if log_entry.type == "MORNING_VICTIM":
                 LOG.info(f"Loups-garous ont éliminé {log_entry.context_data.get('victim', "personne")} (rôle {log_entry.context_data.get('victim_role', "aucun")}).")
         
@@ -365,6 +374,8 @@ class GameLeader:
         Returns:
             a tuple with the intents of the players after the discussion segment and a boolean indicating if the discussion should continue
         """
+        assert speaker in self.players_actives(), f"{speaker.name} is not in the game or is not alive"
+
         # update round and speaker's spoke_at_rounds
         self.round += 1
         speaker.spoke_at_rounds.append(self.round)
@@ -400,12 +411,14 @@ class GameLeader:
                                        for intent in intents 
                                        if intent.want_to_interrupt 
                                        and intent.player_name != self.last_player_to_speak()
+                                       and self.get_player_by_name(intent.player_name) in self.players_actives()
                                        and self.get_player_by_name(intent.player_name).number_interruptions < MAX_INTERRUPTIONS]
         LOG.debug(f"valid_interrupts: {valid_interrupts}")
         valid_want_to_speak: List[str] = [intent.player_name 
                                      for intent in intents 
                                      if intent.want_to_speak 
                                      and intent.player_name != self.last_player_to_speak()
+                                     and self.get_player_by_name(intent.player_name) in self.players_actives()
                                      and self.get_player_by_name(intent.player_name).is_alive]
         LOG.debug(f"valid_want_to_speak: {valid_want_to_speak}")
         # strict priority to interrupters. choose at random
@@ -508,7 +521,7 @@ class GameLeader:
             for intent in intents 
             if intent.want_to_speak 
             and intent.player_name != self.last_player_to_speak()
-            and self.get_player_by_name(intent.player_name).is_alive]
+            and intent.player_name in [p.name for p in self.players_actives()]]
         LOG.debug(f"valid_want_to_speak: {valid_want_to_speak}")
 
         while len(valid_want_to_speak) > 0:
@@ -564,7 +577,7 @@ class GameLeader:
                 LOG.info(f"Le joueur {intent.vote_for} n'est pas dans la partie. {intent.player_name} ne peut pas voter pour lui.")
             player_to_vote_for_is_alive = intent.vote_for in [p.name for p in self.players_actives()]
             if not player_to_vote_for_is_alive:
-                LOG.info(f"Le joueur {intent.vote_for} n'est pas dans la partie. {intent.player_name} ne peut pas voter pour lui.")
+                LOG.info(f"Le joueur {intent.vote_for} n'est plus dans la partie. {intent.player_name} ne peut pas voter pour lui.")
             else:
                 valid_votes.append((intent.player_name, intent.vote_for))
         return valid_votes
@@ -675,28 +688,22 @@ class GameLeader:
 
 if __name__ == "__main__":
 
-    # servers and names are fixed
-    # TODO api_endpoints are hardcoded for now
+    # Load player configuration from JSON file
+    with open("players_config.json", "r", encoding="utf-8") as f:
+        config = json.load(f)
     players = [
-        Player(name="Aline", is_female=True, api_endpoint="http://localhost:5021/"),
-        Player(name="Benjamin", is_female=False, api_endpoint="http://localhost:5022/"),
-        Player(name="Chloe", is_female=True, api_endpoint="http://localhost:5023/"),
-        Player(name="David", is_female=False, api_endpoint="http://localhost:5024/"),
-        Player(name="Elise", is_female=True, api_endpoint="http://localhost:5025/"),
-        Player(name="Frédéric", is_female=False, api_endpoint="http://localhost:5026/"),
-        Player(name="Gabrielle", is_female=True, api_endpoint="http://localhost:5027/"),
+        Player(name=p["name"], is_female=p["is_female"], api_endpoint=p["api_endpoint"]) for p in config["players"]
     ]
     
     # Create game and start it
     game = GameLeader(players, ConsoleLogger())
     can_start = game.start_game()
     if not can_start:
-        print("Failed to start game")
+        LOG.error("ERROR: Failed to start game")
         exit(1)
     else:
         game.print_game_summary()
         while True:
-
             # NIGHT TIME
             victim = game.night_time()
             if game.check_if_game_is_over() is not None:

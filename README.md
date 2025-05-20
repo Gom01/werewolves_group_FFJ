@@ -1,6 +1,6 @@
 # LLM Garous
 
-![](https://upload.wikimedia.org/wikipedia/fr/thumb/2/2c/Loups-garous_de_Thiercelieux.png/500px-Loups-garous_de_Thiercelieux.png)
+![](https://upload.wikimedia.org/wikipedia/fr/thumb/2/2c/Loups-garous_de_Thiercelieux.png/500px-Loups-garous_de_Thiercelieux.png){width=50%}
 
 Codebase for our project at [ISC](https://isc.hevs.ch/) to play a game of "Loups-Garous" with LLMs.
 
@@ -11,7 +11,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-First, implement your `WerewolfPlayer` in `werewolf.py`
+Implement your `WerewolfPlayer` in `werewolf.py`
 
 Start the players with:
 ```bash
