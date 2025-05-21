@@ -8,14 +8,16 @@ import random
 import re
 
 # Initialise un client
-client = openai.OpenAI()
+import openai
+from api_key import OPENAI_API_KEY
+
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
+
 
 class Intent(BaseModel):
     want_to_speak:bool = False
     want_to_interrupt:bool = False
     vote_for:str = None
-
-
 
 
 class WerewolfPlayerInterface(ABC):
