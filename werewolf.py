@@ -7,8 +7,10 @@ from typing import List
 import random
 import re
 
+from api_key import OPENAI_API_KEY
+
 # Initialise un client
-client = openai.OpenAI()
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 class Intent(BaseModel):
     want_to_speak:bool = False
@@ -84,7 +86,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                             f"Si ton role est loup-garou les autres loup-garous sont : {werewolves}")
 
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4.1",
             messages=[
                 {"role": "user", "content": beginning_prompt}
             ])
@@ -92,51 +94,37 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         self.messages = []
         self.playerRest = players_names
 
-
     def speak(self) -> str:
-        """
-        Appelé par le meneur pour donner la parole à un joueur.
-        Le joueur doit alors prendre la parole dans le jeu. 
-    
+        """    Appelé par le meneur pour donner la parole à un joueur.
+        Le joueur doit alors prendre la parole dans le jeu.
         Args:
             Aucun paramètre n'est passé; c'est au joueur de déduire le contexte uniquement depuis ce qu'il a reçu précédemment via notify().
-        
         Returns:
             speech: Un message contenant le texte que le joueur dit, par exemple "Je crois que Aline ment car ..."
             Un joueur peut décider de ne pas parler (retourner un `speech` vide)
-            
         """
+
         print(f"{self.name} is given the floor")
-        messages_with_index = "\n".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
         players_str = ", ".join(self.players_names)
         wolves_str = ", ".join(self.werewolves)
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.    
+        Tu es un joueur de ce jeu.    
+        Voici ton nom : {self.name}.
+        Voici ton rôle : {self.role}.
+        Voici les noms des autres joueurs au début de la partie : {players_str}.    
+        Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+        Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+        Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+        TA TÂCHE :    Tu dois soit répondre, soit ne pas répondre. Tu as 5 secondes au maximum pour réfléchir et répondre.    
+        Tu ne dois pas être agressif !    
+        Si tu es un "loup-garou", tu ne dois pas te révéler !    
+        Tu peux mentir pour gagner !    
+        Tu dois respecter les règles !    
+        Ton objectif est de gagner !    """
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
 
-        PROMPT = f"""
-        CONTEXTE :\n
-        Voici notre jeu et ses règles : {rules}.\n
-        Tu es un joueur de ce jeu.\n
-        Voici ton nom : {self.name}.\n
-        Voici ton rôle : {self.role}.\n
-        Voici les noms des autres joueurs au début de la partie : {players_str}.\n
-        Voici le nombre de loups au début de la partie : {self.werewolves_count}.\n
-        Si tu as le rôle de "loup-garou" , voici la liste des autres : {wolves_str}.\n
-        Voici l'historique des messages depuis le début du Jeu :\n
-        {messages_with_index}\n
-        
-        TA TACHE :\n
-        Tu dois soit répondre ou ne pas répondre. Tu as 5 secondes au maximum, pour réfléchir et répondre. 
-        Ton objectif est de c
-    
-        """
-
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "user", "content": PROMPT}
-            ])
-        # TODO implement me
-        return ""
-
+        return response
 
     def notify(self, message: str) -> Intent:
         """
@@ -179,15 +167,20 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         # donne le nom de la personne la plus suspect dans la liste
         PROMPT = f"""
         
-        Par rapport au message, voici toutes les actions possible. Il est possible d'en faire plusieurs à la fois.
+        Voici le message donner par le meneur de jeu : {message}
         
-        1) Si un joueur est mort, dit son nom.
+        Voici l'historique des messages de la partie : {self.messages} 
+        
+        Par rapport au message et à l'historique des messages, voici toutes les actions possible. Il est possible d'en faire plusieurs à la fois.
+        
+        1) Si un joueur est mort après la nuit, donne le nom de la victime et son rôle.
         EXEMPLE : 
-            Meneur de jeu : "Aline est mort"
-            Toi : "mort:Aline"
+            Meneur de jeu : "Aline est mort et son rôle était villageois"
+            Toi : "mort:Aline:villageois"
             
         2) Si c'est le moment de voter, donne un nom aléatoire dans la liste {self.playerRest}.
         Tu ne peux pas voter pour toi-même.
+        Tu ne peux pas voter pour quelqu'un qui est déjà mort.
         EXEMPLE : 
             Meneur de jeu : "Il est temps de voter"
             Toi : "vote:David"
@@ -195,17 +188,33 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         3) Si c'est le résultat du vote, donne le nom de la victime et son rôle.
         EXEMPLE:
             Meneur du jeu : "Ainsi, Frédéric est mort et son rôle était villageois"
+            Toi : "mort:Frédéric:villageois"
+            
+        4) Si c'est la tombée de la nuit, pas besoin de répondre.
+            
+            
+        REPONSE OBLIGATOIRE en plus des réponses ci-dessus : 
         
+        FORMAT :
+            want_to_speak: True | False,
+            want_to_interrupt: True | False,
+            vote_for: "Aline" | "Benjamin" | ... | None
+            
+        want_to_speak : Sert à dire au meneur de jeu si tu souhaites parler. "True" si tu veux parler, "False" si tu ne veux pas.
+        want_to_interrupt : Sert à dire au meneur de jeu que tu souhaites parler directement. "True" si tu veux parler directement, "False" si tu ne veux pas.
+        vote_for : Sert à dire pour qui tu souhaites voter. Soit le nom, soit "None" pour ne voter personne.
+        
+        Information : Si c'est la nuit, ces 3 valeurs doivent être sur False, False, None respectivement.
         """
 
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4.1",
             messages=[
                 {"role": "user", "content": PROMPT }
             ]).choices[0].message.content
 
-        if "mort" in response:
-            self.playerRest.remove(response.split(":")[1])
+        """if "mort" in response:
+            self.playerRest.remove(response.split(":")[1])"""
 
         self.messages.append(f"[{self.name}] " + response)
 
