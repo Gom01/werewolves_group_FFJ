@@ -1,0 +1,164 @@
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (villageois)
+DEBUG: <-- new_game response from Aline: {"ack":true}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true}
+DEBUG: --> new_game for Chloe (loup-garou)
+DEBUG: <-- new_game response from Chloe: {"ack":true}
+DEBUG: --> new_game for David (loup-garou)
+DEBUG: <-- new_game response from David: {"ack":true}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true}
+DEBUG: --> new_game for Frédéric (voyante)
+DEBUG: <-- new_game response from Frédéric: {"ack":true}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Chloe', 'David']
+INFO: Initial seer: Frédéric
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle']
+INFO: Active werewolves: ['Chloe', 'David']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Aline: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Frédéric
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Aline: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: Seer asked to check player: 
+INFO: Le joueur  n'est pas dans la partie. La Voyante ne peut pas sonder.
+DEBUG: loup_garous: ['Chloe', 'David']
+DEBUG: --> notify for Chloe: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+INFO: Le joueur  n'est pas dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est pas dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. David ne peut pas voter pour lui.
+DEBUG: valid_votes: [], rounds: 0
+DEBUG: valid_votes from loup garous: []
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for Chloe: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+INFO: Le joueur  n'est pas dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est pas dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. David ne peut pas voter pour lui.
+DEBUG: valid_votes: [], rounds: 1
+DEBUG: valid_votes from loup garous: []
+DEBUG: no consensus found, rounds: 1
+DEBUG: --> notify for Chloe: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+INFO: Le joueur  n'est pas dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est pas dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. David ne peut pas voter pour lui.
+DEBUG: valid_votes: [], rounds: 2
+DEBUG: valid_votes from loup garous: []
+DEBUG: no consensus found, rounds: 2
+DEBUG: --> notify for Chloe: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Chloe a voté pour , David a voté pour 
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+INFO: Le joueur  n'est pas dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur  n'est pas dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur  n'est plus dans la partie. David ne peut pas voter pour lui.
+DEBUG: valid_votes: [], rounds: 3
+DEBUG: valid_votes from loup garous: []
+DEBUG: no consensus found, rounds: 3
+DEBUG: --> notify for Aline: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for Benjamin: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for Chloe: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for David: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for Elise: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for Frédéric: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: --> notify for Gabrielle: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, personne n'a été mangé.e par les loups-garous. 
+DEBUG: <-- notify response from Benjamin: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Chloe', 'David']
+INFO: Initial seer: Frédéric
+INFO: Loups-garous ont éliminé None (rôle None).
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle']
+INFO: Active werewolves: ['Chloe', 'David']
+INFO: ********************************************************************************
+DEBUG: discussion_round: 0
+DEBUG: valid_interrupts: []
+DEBUG: valid_want_to_speak: []
+DEBUG: want_to_speak candidates: []
+DEBUG: silent player: Aline hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: Benjamin hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: Chloe hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: David hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: Elise hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: Frédéric hasn't spoken for 4 rounds, factor: 0
+DEBUG: silent player: Gabrielle hasn't spoken for 4 rounds, factor: 0
+DEBUG: chatty player: Aline has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Benjamin has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Chloe has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: David has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Elise has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Frédéric has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Gabrielle has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: number of None added: 0
+DEBUG: candidates: []
+DEBUG: no candidates, returning None
+DEBUG: speaker: None
+DEBUG: --> notify for Aline: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Benjamin: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Chloe: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for David: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Elise: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Frédéric: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Gabrielle: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: <-- notify response from Benjamin: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_want_to_speak: []
+DEBUG: --> notify for Aline: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Benjamin: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Chloe: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for David: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Elise: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Frédéric: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Gabrielle: Il est temps de voter. Donnez maintenant votre intention de vote.

@@ -7,10 +7,12 @@ from typing import List
 import random
 import re
 
+# Initialise un client
+import openai
 from api_key import OPENAI_API_KEY
 
-# Initialise un client
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
+
 
 class Intent(BaseModel):
     want_to_speak:bool = False
