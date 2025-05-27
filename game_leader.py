@@ -27,6 +27,7 @@ logger.addHandler(rotating_handler)
 # Console handler
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
+
 logger.addHandler(console_handler)
 # Suppress unnecessary logs from other libs
 for lib in ['tornado', 'asyncio', 'httpx', 'httpcore', 'openai', 'urllib3', 'requests']:
