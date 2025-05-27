@@ -117,7 +117,7 @@ def create_app():
 def run_app(port):
     # Suppress Flask (Werkzeug) access logs
     log = logging.getLogger('werkzeug')
-    log.setLevel(logging.ERROR)  # or logging.CRITICAL to suppress even more
+    log.setLevel(logging.CRITICAL)  # or logging.CRITICAL to suppress even more
 
     app = create_app()
     app.run(debug=False, port=port, host='localhost')
