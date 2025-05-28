@@ -4,7 +4,7 @@ from typing import List
 import random
 import re
 
-PLAYER_NAMES = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gaston"]
+PLAYER_NAMES = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gabrielle", "Hugo", "Inès", "Julien", "Karine", "Léo", "Manon", "Noé"]
 PLAYER_ROLES = ["villageois", "voyante", "loup-garou"]
 
 #This function parse the raw message and then find what are the important informations

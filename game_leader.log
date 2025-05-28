@@ -6588,3 +6588,657 @@ INFO: VOTE_RESULT:  Aline a voté pour David, Benjamin a voté pour Aline, David a
 INFO: Active players: ['Aline', 'Benjamin', 'David']
 INFO: Active werewolves: []
 INFO: ********************************************************************************
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (loup-garou)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":0}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Chloe (villageois)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":2}
+DEBUG: --> new_game for David (loup-garou)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":3}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Gabrielle (voyante)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Hugo (loup-garou)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Inès (villageois)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Julien (villageois)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Karine (villageois)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Léo (villageois)
+DEBUG: <-- new_game response from Léo: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Manon (villageois)
+DEBUG: <-- new_game response from Manon: {"ack":true,"player_id":12}
+DEBUG: --> new_game for Noé (villageois)
+DEBUG: <-- new_game response from Noé: {"ack":true,"player_id":13}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Aline', 'David', 'Hugo']
+INFO: Initial seer: Gabrielle
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Aline', 'David', 'Hugo']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+WARNING: Overall timeout waiting for responses in announce_to_all after 4s
+WARNING: Request to Aline did not complete, cancelling
+WARNING: Request to Benjamin did not complete, cancelling
+WARNING: Request to Chloe did not complete, cancelling
+WARNING: Request to David did not complete, cancelling
+WARNING: Request to Elise did not complete, cancelling
+WARNING: Request to Frédéric did not complete, cancelling
+WARNING: Request to Gabrielle did not complete, cancelling
+WARNING: Request to Hugo did not complete, cancelling
+WARNING: Request to Inès did not complete, cancelling
+WARNING: Request to Julien did not complete, cancelling
+WARNING: Request to Karine did not complete, cancelling
+WARNING: Request to Léo did not complete, cancelling
+WARNING: Request to Manon did not complete, cancelling
+WARNING: Request to Noé did not complete, cancelling
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Gabrielle
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+WARNING: Overall timeout waiting for responses in announce_to_all after 4s
+WARNING: Request to Aline did not complete, cancelling
+WARNING: Request to Benjamin did not complete, cancelling
+WARNING: Request to Chloe did not complete, cancelling
+WARNING: Request to David did not complete, cancelling
+WARNING: Request to Elise did not complete, cancelling
+WARNING: Request to Frédéric did not complete, cancelling
+WARNING: Request to Gabrielle did not complete, cancelling
+WARNING: Request to Hugo did not complete, cancelling
+WARNING: Request to Inès did not complete, cancelling
+WARNING: Request to Julien did not complete, cancelling
+WARNING: Request to Karine did not complete, cancelling
+WARNING: Request to Léo did not complete, cancelling
+WARNING: Request to Manon did not complete, cancelling
+WARNING: Request to Noé did not complete, cancelling
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (loup-garou)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":0}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Chloe (villageois)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":2}
+DEBUG: --> new_game for David (villageois)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":3}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Hugo (loup-garou)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Inès (loup-garou)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Julien (voyante)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Karine (villageois)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Léo (villageois)
+DEBUG: <-- new_game response from Léo: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Manon (villageois)
+DEBUG: <-- new_game response from Manon: {"ack":true,"player_id":12}
+DEBUG: --> new_game for Noé (villageois)
+DEBUG: <-- new_game response from Noé: {"ack":true,"player_id":13}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: Initial seer: Julien
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Julien
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: Seer asked to check player: Chloe
+DEBUG: --> notify for Julien: Le rôle de Chloe est villageois
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: loup_garous: ['Aline', 'Hugo', 'Inès']
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Aline: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Hugo: {"vote_for":"L\u00e9o","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Inès: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Manon', 'Léo', 'Benjamin'], rounds: 0
+DEBUG: valid_votes from loup garous: ['Manon', 'Léo', 'Benjamin']
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Manon, Hugo a voté pour Léo, Inès a voté pour Benjamin
+DEBUG: <-- notify response from Aline: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Manon, Hugo a voté pour Léo, Inès a voté pour Benjamin
+DEBUG: <-- notify response from Hugo: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Manon, Hugo a voté pour Léo, Inès a voté pour Benjamin
+DEBUG: <-- notify response from Inès: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Chloe', 'Chloe', 'Elise'], rounds: 1
+DEBUG: valid_votes from loup garous: ['Chloe', 'Chloe', 'Elise']
+DEBUG: no consensus found, rounds: 1
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Chloe, Hugo a voté pour Chloe, Inès a voté pour Elise
+DEBUG: <-- notify response from Aline: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Chloe, Hugo a voté pour Chloe, Inès a voté pour Elise
+DEBUG: <-- notify response from Hugo: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Chloe, Hugo a voté pour Chloe, Inès a voté pour Elise
+DEBUG: <-- notify response from Inès: {"vote_for":"Chloe","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Chloe', 'Chloe', 'Chloe'], rounds: 2
+DEBUG: valid_votes from loup garous: ['Chloe', 'Chloe', 'Chloe']
+DEBUG: victim: Chloe
+DEBUG: victim eliminated: Chloe
+DEBUG: --> notify for Aline: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Benjamin: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for David: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Elise: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Frédéric: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Gabrielle: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Hugo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Inès: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Julien: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Karine: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Léo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Manon: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Noé: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Chloe a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: Initial seer: Julien
+INFO: Loups-garous ont éliminé Chloe (rôle villageois).
+INFO: Active players: ['Aline', 'Benjamin', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: ********************************************************************************
+DEBUG: discussion_round: 0
+DEBUG: valid_interrupts: []
+DEBUG: valid_want_to_speak: []
+DEBUG: want_to_speak candidates: []
+DEBUG: chatty player: Aline has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Benjamin has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: David has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Elise has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Frédéric has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Gabrielle has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Hugo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Inès has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Julien has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Karine has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Léo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Manon has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Noé has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: number of None added: 0
+DEBUG: candidates: []
+DEBUG: no candidates, returning None
+DEBUG: speaker: None
+DEBUG: --> notify for Aline: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Benjamin: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for David: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Elise: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Frédéric: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Gabrielle: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Hugo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Inès: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Julien: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Karine: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Léo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Manon: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Noé: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_want_to_speak: []
+DEBUG: --> notify for Aline: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Benjamin: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for David: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Elise: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Frédéric: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Gabrielle: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Hugo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Inès: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Julien: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Karine: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Léo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Manon: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Noé: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: <-- notify response from Benjamin: {"vote_for":"Karine","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":"No\u00e9","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":"Hugo","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":"Benjamin","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":"Fr\u00e9d\u00e9ric","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"Gabrielle","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: [('Benjamin', 'Karine'), ('Aline', 'Benjamin'), ('Karine', 'Noé'), ('Gabrielle', 'Benjamin'), ('Hugo', 'David'), ('Elise', 'Aline'), ('Inès', 'Benjamin'), ('David', 'Benjamin'), ('Léo', 'Hugo'), ('Manon', 'Benjamin'), ('Noé', 'David'), ('Julien', 'Frédéric'), ('Frédéric', 'Gabrielle')]
+DEBUG: victim: Benjamin
+DEBUG: --> notify for Aline: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for David: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Elise: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Frédéric: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Gabrielle: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Hugo: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Inès: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Julien: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Karine: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Léo: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Manon: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Noé: Benjamin a voté pour Karine, Aline a voté pour Benjamin, Karine a voté pour Noé, Gabrielle a voté pour Benjamin, Hugo a voté pour David, Elise a voté pour Aline, Inès a voté pour Benjamin, David a voté pour Benjamin, Léo a voté pour Hugo, Manon a voté pour Benjamin, Noé a voté pour David, Julien a voté pour Frédéric, Frédéric a voté pour Gabrielle. Ainsi, Benjamin est mort(e) et son rôle était villageois.
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Julien
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":"Fr\u00e9d\u00e9ric","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: Seer asked to check player: Frédéric
+DEBUG: --> notify for Julien: Le rôle de Frédéric est villageois
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: loup_garous: ['Aline', 'Hugo', 'Inès']
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Aline: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Hugo: {"vote_for":"L\u00e9o","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Inès: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['David', 'Léo', 'David'], rounds: 0
+DEBUG: valid_votes from loup garous: ['David', 'Léo', 'David']
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour David, Hugo a voté pour Léo, Inès a voté pour David
+DEBUG: <-- notify response from Aline: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour David, Hugo a voté pour Léo, Inès a voté pour David
+DEBUG: <-- notify response from Hugo: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour David, Hugo a voté pour Léo, Inès a voté pour David
+DEBUG: <-- notify response from Inès: {"vote_for":"David","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['David', 'David', 'David'], rounds: 1
+DEBUG: valid_votes from loup garous: ['David', 'David', 'David']
+DEBUG: victim: David
+DEBUG: victim eliminated: David
+DEBUG: --> notify for Aline: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Elise: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Frédéric: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Gabrielle: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Hugo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Inès: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Julien: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Karine: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Léo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Manon: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Noé: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, David a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: Initial seer: Julien
+INFO: Loups-garous ont éliminé Chloe (rôle villageois).
+INFO: Villageois ont éliminé   Benjamin (rôle villageois).
+INFO: Loups-garous ont éliminé David (rôle villageois).
+INFO: Active players: ['Aline', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Aline', 'Hugo', 'Inès']
+INFO: ********************************************************************************
+DEBUG: discussion_round: 0
+DEBUG: valid_interrupts: []
+DEBUG: valid_want_to_speak: []
+DEBUG: want_to_speak candidates: []
+DEBUG: chatty player: Aline has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Elise has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Frédéric has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Gabrielle has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Hugo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Inès has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Julien has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Karine has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Léo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Manon has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Noé has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: number of None added: 0
+DEBUG: candidates: []
+DEBUG: no candidates, returning None
+DEBUG: speaker: None
+DEBUG: --> notify for Aline: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Elise: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Frédéric: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Gabrielle: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Hugo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Inès: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Julien: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Karine: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Léo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Manon: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Noé: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_want_to_speak: []
+DEBUG: --> notify for Aline: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Elise: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Frédéric: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Gabrielle: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Hugo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Inès: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Julien: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Karine: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Léo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Manon: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Noé: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: <-- notify response from Elise: {"vote_for":"Hugo","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":"L\u00e9o","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"No\u00e9","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":"No\u00e9","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"Fr\u00e9d\u00e9ric","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":"Gabrielle","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":"Fr\u00e9d\u00e9ric","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":"Julien","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"L\u00e9o","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: [('Elise', 'Hugo'), ('Inès', 'Léo'), ('Julien', 'Inès'), ('Frédéric', 'Noé'), ('Léo', 'Noé'), ('Noé', 'Elise'), ('Gabrielle', 'Frédéric'), ('Hugo', 'Gabrielle'), ('Manon', 'Frédéric'), ('Karine', 'Julien'), ('Aline', 'Léo')]
+DEBUG: victim: Noé
+DEBUG: --> notify for Aline: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Elise: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Frédéric: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Gabrielle: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Hugo: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Inès: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Julien: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Karine: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Léo: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Manon: Elise a voté pour Hugo, Inès a voté pour Léo, Julien a voté pour Inès, Frédéric a voté pour Noé, Léo a voté pour Noé, Noé a voté pour Elise, Gabrielle a voté pour Frédéric, Hugo a voté pour Gabrielle, Manon a voté pour Frédéric, Karine a voté pour Julien, Aline a voté pour Léo. Ainsi, Noé est mort(e) et son rôle était villageois.
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Julien
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: Seer asked to check player: Inès
+DEBUG: --> notify for Julien: Le rôle de Inès est loup-garou
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: loup_garous: ['Aline', 'Hugo', 'Inès']
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Aline: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Hugo: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Inès: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Elise', 'Manon', 'Manon'], rounds: 0
+DEBUG: valid_votes from loup garous: ['Elise', 'Manon', 'Manon']
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for Aline: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Elise, Hugo a voté pour Manon, Inès a voté pour Manon
+DEBUG: <-- notify response from Aline: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Hugo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Elise, Hugo a voté pour Manon, Inès a voté pour Manon
+DEBUG: <-- notify response from Hugo: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Inès: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Aline a voté pour Elise, Hugo a voté pour Manon, Inès a voté pour Manon
+DEBUG: <-- notify response from Inès: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Elise', 'Elise', 'Elise'], rounds: 1
+DEBUG: valid_votes from loup garous: ['Elise', 'Elise', 'Elise']
+DEBUG: victim: Elise
+DEBUG: victim eliminated: Elise
+DEBUG: --> notify for Aline: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Frédéric: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Gabrielle: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Hugo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Inès: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Julien: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Karine: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Léo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Manon: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Elise a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
