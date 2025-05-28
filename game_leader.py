@@ -44,7 +44,7 @@ VILLAGER: str = "villageois"
 # hard limits
 MAX_INTERRUPTIONS: int = 2
 MAX_ROUNDS: int = 20
-API_TIMEOUT: int = 4 # seconds
+API_TIMEOUT: int = 10 # seconds
 
 
 

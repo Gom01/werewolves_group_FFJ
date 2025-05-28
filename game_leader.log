@@ -11837,3 +11837,35 @@ DEBUG: <-- notify response from Benjamin: {"vote_for":"None","want_to_interrupt"
 DEBUG: <-- notify response from Chloe: {"vote_for":"None","want_to_interrupt":true,"want_to_speak":true}
 DEBUG: <-- notify response from Aline: {"vote_for":"None","want_to_interrupt":true,"want_to_speak":true}
 DEBUG: <-- notify response from Gabrielle: {"vote_for":"None","want_to_interrupt":true,"want_to_speak":true}
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (loup-garou)
+WARNING: Error in post_new_game for Aline: HTTPConnectionPool(host='localhost', port=5021): Read timed out. (read timeout=4)
+ERROR: ERROR: Failed to start game
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (villageois)
+WARNING: Error in post_new_game for Aline: HTTPConnectionPool(host='localhost', port=5021): Read timed out. (read timeout=4)
+ERROR: ERROR: Failed to start game
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (villageois)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":2}
+DEBUG: --> new_game for Chloe (villageois)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":3}
+DEBUG: --> new_game for David (voyante)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Elise (loup-garou)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Hugo (villageois)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Inès (villageois)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Julien (villageois)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Karine (villageois)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Léo (loup-garou)
