@@ -1,8 +1,13 @@
+import openai
 from pydantic import BaseModel
 from abc import ABC, abstractmethod
 from typing import List
 import random
 import re
+
+from api_key import OPENAI_API_KEY
+
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 PLAYER_NAMES = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gabrielle", "Hugo", "Inès", "Julien", "Karine", "Léo", "Manon", "Noé"]
 PLAYER_ROLES = ["villageois", "voyante", "loup-garou"]
@@ -97,6 +102,40 @@ class WerewolfPlayerInterface(ABC):
 
 
 class WerewolfPlayer(WerewolfPlayerInterface):
+    rules = """"
+           Bienvenue dans LLMs-Garous, une version adaptée du jeu "Les Loups-Garous de Thiercelieux".
+
+           🎯 Objectif :
+           - Il y a 7 joueurs : 2 loups-garous, 1 voyante, 4 villageois.
+           - Les loups-garous doivent éliminer tous les villageois et la voyante.
+           - Les villageois et la voyante doivent identifier et éliminer les loups-garous.
+
+           🕓 Déroulement d’un tour :
+           Le jeu alterne entre deux phases : la nuit et le jour.
+
+           🌙 Phase de nuit :
+           - Le meneur annonce "C'est la nuit, tout le village s'endort, les joueurs ferment les yeux."
+           - Les loups-garous se réveillent, se reconnaissent et votent pour une victime.
+           - La voyante se réveille et peut sonder un joueur pour connaître son rôle.
+           - Les villageois dorment et ne font rien.
+
+           🌞 Phase de jour :
+           - Le meneur annonce le résultat de la nuit : s’il y a une victime et son rôle.
+           - Les joueurs prennent la parole, s’accusent, défendent ou se taisent.
+           - Chaque joueur peut :
+               - demander à parler
+               - interrompre quelqu’un (max 2 fois par partie, peut être refusé par le meneur)
+               - voter pendant la phase de vote
+           - Après les discussions, un vote a lieu. Le joueur ayant le plus de votes est éliminé (en cas d’égalité : personne n’est éliminé).
+           - Le rôle du joueur éliminé est révélé.
+
+           🗣️ Gestion de la parole :
+           - Le meneur accorde la parole à ceux qui la demandent.
+           - Les joueurs silencieux depuis plusieurs tours ont plus de chances d’être sélectionnés.
+           - Un même joueur ne peut pas parler deux fois de suite.
+
+           Ton but en tant que joueur est de survivre le plus longtemps possible... ou de faire gagner ton camp.
+           """
 
     #This code is exectuted only at the beginning of the game
     def __init__(self, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]) -> None:
@@ -127,26 +166,32 @@ class WerewolfPlayer(WerewolfPlayerInterface):
     #When I can speak :
     ##Here add the logic to speak using OpenIA
     def speak(self) -> str:
-        #If there was no context then i say nothing
-        if not self.messages:
-            return ""
 
-        last_msg = self.messages[-1]
-        parsed = parse_message(last_msg)
+        print(f"{self.name} is given the floor")
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        alive_players_str = ", ".join(self.alive_players)
+        wolves_str = ", ".join(self.werewolves)
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
+                Tu es un joueur de ce jeu.    
+                Voici ton nom : {self.name}.
+                Voici ton rôle : {self.role}.
+                Voici Les rôles connu : {self.known_roles}. 
+                Voici l'historique des votes : {self.vote_history}.
+                Voici les noms des autres joueurs encore dans la partie : {alive_players_str}.
+                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+                Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+                Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+                TA TÂCHE :    
+                    - Si tu es un "loup-garou", tu ne dois pas te révéler !    
+                    - Tu peux mentir pour gagner !    
+                    - Nombre de mots maximum pour la réponse : 1000 mots
+                    - Selon le context, défend toi ou attaque.
+        """
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[
+            0].message.content
 
-        self.speech_count[self.name] = self.speech_count.get(self.name, 0) + 1
+        return response
 
-        if parsed.get("type") == "morning_victim":
-            suspects = list(self.alive_players)
-            if not suspects:
-                return ""
-            silent = sorted(suspects, key=lambda p: self.speech_count.get(p, 0))
-            msg = f"Je pense que {silent[0]} est suspect."
-            if self.name == "Aline":
-                print(msg)
-            return msg
-
-        return ""
 
     def choose_vote(self) -> str:
         #Here I can also use chatGPT API to choose to vote
