@@ -186,54 +186,92 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                     - Tu peux mentir pour gagner !    
                     - Nombre de mots maximum pour la réponse : 1000 mots
                     - Selon le context, défend toi ou attaque.
+                    - Soit très bref dans tes réponses
         """
-        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[
-            0].message.content
+
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
+
+        self.messages.append(f"{self.name} a dit : " + response)
 
         return response
 
 
-    def choose_vote(self) -> str:
-        #Here I can also use chatGPT API to choose to vote
-        # Si je ne suis pas loup-garou, je peux cibler les loups connus
-        if self.role != "loup-garou":
-            known_wolves = [p for p, r in self.known_roles.items()
-                            if r == "loup-garou" and p in self.alive_players]
-            if known_wolves:
-                person_to_vote = known_wolves[0]
-                if self.name == "Aline":
-                    print(f"I know {person_to_vote} is a werewolf. Voting for them.")
-                return person_to_vote
+    def choose_vote(self) -> str:  # Florian
 
-        # Cibler tous les vivants sauf moi
-        suspects = [p for p in self.alive_players if p != self.name]
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        alive_players_str = ", ".join(self.alive_players)
+        wolves_str = ", ".join(self.werewolves)
 
-        # Si je ne suis pas loup-garou, exclure villageois et voyante connus
-        if self.role != "loup-garou":
-            suspects = [p for p in suspects if self.known_roles.get(p) not in {"villageois", "voyante"}]
-        else:
-            # Si je suis un loup-garou, ne pas voter pour mes alliés loups-garous
-            suspects = [p for p in suspects if p not in self.werewolves]
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
+                Tu es un joueur de ce jeu.    
+                Voici ton nom : {self.name}.
+                Voici ton rôle : {self.role}.
+                Voici Les rôles connu : {self.known_roles}. 
+                Voici l'historique des votes : {self.vote_history}.
+                Voici les noms des autres joueurs encore dans la partie : {alive_players_str}.
+                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+                Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+                Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+                TA TÂCHE :    
+                    Donne moi uniquement le nom du joueur que tu veux éliminer
+        """
 
-        if not suspects:
-            if self.name == "Aline":
-                print("No valid suspects found.")
-            return None
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
 
-        # Vérifier si tous les suspects ont parlé autant
-        min_count = min(self.speech_count.get(p, 0) for p in suspects)
-        least_talkative = [p for p in suspects if self.speech_count.get(p, 0) == min_count]
+        return response
 
-        if least_talkative:
-            person_to_vote = random.choice(least_talkative)
-            if self.name == "Aline":
-                print(f"Voting for: {person_to_vote} (among least talkative)")
-            return person_to_vote
+    def choose_vote_voyante(self) -> str:  # Josh
 
-        person_to_vote = random.choice(suspects)
-        if self.name == "Aline":
-            print(f"Fallback vote for: {person_to_vote}")
-        return person_to_vote
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        alive_players_str = ", ".join(self.alive_players)
+        wolves_str = ", ".join(self.werewolves)
+
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
+                Tu es un joueur de ce jeu.    
+                Voici ton nom : {self.name}.
+                Voici ton rôle : {self.role}.
+                Voici Les rôles connu : {self.known_roles}. 
+                Voici l'historique des votes : {self.vote_history}.
+                Voici les noms des autres joueurs encore dans la partie : {alive_players_str}.
+                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+                Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+                Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+                TA TÂCHE :    
+                    Donne moi uniquement le nom du joueur dont tu veux connaître le rôle.
+        """
+
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
+
+        return response
+
+    def choose_vote_wolf(self) -> str: # Flavien
+
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        alive_players_str = ", ".join(self.alive_players)
+        wolves_str = ", ".join(self.werewolves)
+
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
+                Tu es un joueur de ce jeu.    
+                Voici ton nom : {self.name}.
+                Voici ton rôle : {self.role}.
+                Voici Les rôles connu : {self.known_roles}. 
+                Voici l'historique des votes : {self.vote_history}.
+                Voici les noms des autres joueurs encore dans la partie : {alive_players_str}.
+                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+                Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+                Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+                TA TÂCHE :    
+                    Si tu es le premier loup à voter, donne moi uniquement de nom de la victime
+                    Sinon, donne moi uniquement le nom d'une victime déjà voté dans cette nuit.
+                    
+        """
+
+
+
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
+
+        return response
+
 
     #If dead remove the player
     def remove_player(self, player: str, role: str):
@@ -258,13 +296,9 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             #VOYANTE
             #Voyante vote for a random person (must return intent.vote_for)
             if msg_type == "voyante_wakeup" and self.role == "voyante":
-                choices = list(self.alive_players)
-                if choices:
-                    randomPerson = random.choice(choices)
-                    if self.name == "Aline":
-                        print(f"I'm the voyante and I can find out the role of a person")
-                        print(f"I decide to vote for : {randomPerson}")
-                    intent.vote_for = randomPerson
+                if self.name == "Aline":
+                    print(f"I'm the voyante and I can find out the role of a person")
+                intent.vote_for = self.choose_vote_voyante()
 
             #Voyante get the role from the other player
             elif msg_type == "voyante_result":
@@ -279,19 +313,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 if self.name == "Aline":
                     print(f"I can vote only for : {eligible}")
 
-                vote_counts = {}
-                for voter, voted in parsed.get("werewolves_votes", []):
-                    if voter in self.werewolves and voted in eligible:
-                        vote_counts[voted] = vote_counts.get(voted, 0) + 1
-                if vote_counts:
-                    intent.vote_for = max(vote_counts.items(), key=lambda x: x[1])[0]
-                    if self.name == "Aline":
-                        print(f"Maximum voted person : {intent.vote_for}")
-                elif eligible:
-                    randomPerson = random.choice(eligible)
-                    if self.name == "Aline":
-                        print(f"No maximum vote before : {randomPerson}")
-                    intent.vote_for = randomPerson
+                intent.vote_for = self.choose_vote_wolf()
 
             #End of the night morning victim
             elif msg_type == "morning_victim":
@@ -312,6 +334,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             elif msg_type == "pre_vote":
                 if self.name == "Aline":
                     print("I can speak or interrupt we are voting")
+                intent.want_to_speak = True
 
             elif msg_type == "vote_now":
                 intent.vote_for = self.choose_vote()
