@@ -1,9 +1,10 @@
+import sys
 import random
 from typing import List, Dict, Any, Optional, Tuple
 from pydantic import BaseModel
 from collections import Counter
 import requests
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import math
 import json
 
@@ -43,7 +44,7 @@ VILLAGER: str = "villageois"
 # hard limits
 MAX_INTERRUPTIONS: int = 2
 MAX_ROUNDS: int = 20
-API_TIMEOUT: int = 10 # seconds
+API_TIMEOUT: int = 4 # seconds
 
 
 
@@ -53,7 +54,8 @@ class Player(BaseModel):
     name: str
     is_female: bool
     role: str = "unassigned"
-    api_endpoint: str
+    api_base_url: str
+    api_endpoint: str = None
     is_alive: bool = True
     number_interruptions: int = 0
     spoke_at_rounds: List[int] = []
@@ -87,7 +89,7 @@ class ConsoleLogger(Logger):
 
     def log(self, entry: GameLogEntry) -> None:
         print('-' * 80)
-        print(entry.to_llm_string(self.msg_id))
+        print(entry.to_string(self.msg_id))
         print('-' * 80)
         self.msg_id += 1
 
@@ -96,7 +98,7 @@ class ApiCalls:
     """Handles all API communications with players."""
     
     @staticmethod
-    def post_new_game(player: Player, players_names: List[str], werewolves_cnt:int, werewolves: List[Optional[str]]) -> bool:
+    def post_new_game(player: Player, players_names: List[str], werewolves_cnt:int, werewolves: List[Optional[str]]) -> int:
         """
         Send a POST request to /new_game endpoint.
         
@@ -109,7 +111,7 @@ class ApiCalls:
         try:
             LOG.debug(f"--> new_game for {player.name} ({player.role})")
             response = requests.post(
-                f"{player.api_endpoint}/new_game", 
+                f"{player.api_base_url}/new_game", 
                 json={
                     "role": player.role, 
                     "player_name": player.name, 
@@ -121,10 +123,12 @@ class ApiCalls:
             )
             LOG.debug(f"<-- new_game response from {player.name}: {str(response.text).strip()}")
             response.raise_for_status()
-            return bool(response.json()["ack"])
+            # get the player_id
+            player_id = response.json()["player_id"]
+            return player_id
         except Exception as e:
             LOG.warning(f"Error in post_new_game for {player.name}: {str(e)}")
-            return False
+            return -1
     
     @staticmethod
     def post_speech(player: Player) -> Optional[str]:
@@ -176,6 +180,9 @@ class ApiCalls:
             assert "want_to_interrupt" in j, f"want_to_interrupt is not in the response: {j}"
             assert "vote_for" in j, f"vote_for is not in the response: {j}"
             return Intent(player_name=player.name, want_to_speak=j["want_to_speak"], want_to_interrupt=j["want_to_interrupt"], vote_for=j["vote_for"])
+        except requests.exceptions.Timeout:
+            LOG.warning(f"Timeout in post_notify for player {player.name} after {API_TIMEOUT}s")
+            return None
         except Exception as e:
             LOG.warning(f"Error in post_notify for player {player.name}: {e}")
             return None
@@ -237,10 +244,10 @@ class GameLeader:
         success = True
         for player in self.players:
             if player.role == WEREWOLF:  # only show werewolves to each other
-                ack = self.api.post_new_game(player, players_names, len(werewolves), werewolves)
+                player_id = self.api.post_new_game(player, players_names, len(werewolves), werewolves)
             else:
-                ack = self.api.post_new_game(player, players_names, len(werewolves), [])
-            if not ack:
+                player_id = self.api.post_new_game(player, players_names, len(werewolves), [])
+            if player_id < 0:
                 success = False
                 self.log(GameLogEntry(
                     type="ERROR",
@@ -248,6 +255,9 @@ class GameLeader:
                     context_data={"werewolves": werewolves, "players_names": players_names}
                 ))
                 break
+            else:
+                # update player's api
+                player.api_endpoint = f"{player.api_base_url}{player_id}/"
         
         return success
 
@@ -260,7 +270,7 @@ class GameLeader:
             A list of werewolves' names
         """
         num_players = len(self.players)
-        num_werewolves = max(1, num_players // 3)
+        num_werewolves = 2 if num_players < 12 else 3  # according to rules
         has_seer = num_players >= 5  # Only add seer if enough players
         
         # Create list of roles
@@ -369,10 +379,40 @@ class GameLeader:
         Announce a message to all active players asynchronously using ThreadPoolExecutor.
         """
         active_players = [player for player in self.players_actives() if player.name != exclude_player]
+        results = []
+        
+        if not active_players:
+            return results
+        
         with ThreadPoolExecutor(max_workers=len(active_players)) as executor:
-            futures = [executor.submit(self.api.post_notify, player, msg) for player in active_players]
-            # only consider valid responses
-            return [future.result() for future in futures if future.result() is not None]
+            # Submit all tasks
+            future_to_player = {
+                executor.submit(self.api.post_notify, player, msg): player 
+                for player in active_players
+            }
+            
+            # Wait for completion - each individual API call has its own timeout (API_TIMEOUT)
+            try:
+                for future in as_completed(future_to_player, timeout=API_TIMEOUT):
+                    player = future_to_player[future]
+                    try:
+                        result = future.result()  # This won't block since future is already done
+                        if result is not None:
+                            results.append(result)
+                    except Exception as e:
+                        LOG.info(f"Error getting result from {player.name}: {e}")
+                        
+            except TimeoutError:
+                # This should rarely happen since individual calls have their own timeouts
+                LOG.warning(f"Overall timeout waiting for responses in announce_to_all after {API_TIMEOUT}s")
+                
+            # Handle any remaining futures that didn't complete
+            for future, player in future_to_player.items():
+                if not future.done():
+                    LOG.warning(f"Request to {player.name} did not complete, cancelling")
+                    future.cancel()
+        
+        return results
 
 
     def discussion_segment(self, speaker:Player) -> List[Intent]:
@@ -394,7 +434,7 @@ class GameLeader:
         # let the player speak
         speech = self.api.post_speech(speaker)
         if speech is None:
-            msg = f"{speaker.name} n'a pas répondu à temps. Il/elle a été éliminé de la partie."    
+            msg = f"{speaker.name} avec le rôle {speaker.role} n'a pas répondu à temps. Il/elle a été éliminé de la partie."    
             self.log(GameLogEntry(
                 type="ELIMINATE_PLAYER",
                 actor_name=speaker.name,
@@ -448,13 +488,13 @@ class GameLeader:
         candidates: List[Player] = [self.get_player_by_name(player_name) for player_name in valid_want_to_speak] * 5
         LOG.debug(f"want_to_speak candidates: {name(candidates)}")
         
-        # then add silent players
-        for player in self.players_actives(self.last_player_to_speak()):
-            haven_t_spoken_since = self.round - player.last_spoke_at_round()
-            # add multiple times if haven't spoken for a long time
-            factor = min(30, math.floor(math.exp(0.15 * haven_t_spoken_since)) - 1)
-            LOG.debug(f"silent player: {player.name} hasn't spoken for {haven_t_spoken_since} rounds, factor: {factor}")
-            candidates.extend([player] * factor)
+        # then add silent players. DISABLED for now
+        # for player in self.players_actives(self.last_player_to_speak()):
+        #     haven_t_spoken_since = self.round - player.last_spoke_at_round()
+        #     # add multiple times if haven't spoken for a long time
+        #     factor = min(30, math.floor(math.exp(0.15 * haven_t_spoken_since)) - 1)
+        #     LOG.debug(f"silent player: {player.name} hasn't spoken for {haven_t_spoken_since} rounds, factor: {factor}")
+        #     candidates.extend([player] * factor)
 
         # then remove players that have spoken too much
         total_speeches = sum(len(player.spoke_at_rounds) for player in self.players_actives()) + 1
@@ -711,11 +751,18 @@ if __name__ == "__main__":
     with open("players_config.json", "r", encoding="utf-8") as f:
         config = json.load(f)
     players = [
-        Player(name=p["name"], is_female=p["is_female"], api_endpoint=p["api_endpoint"]) for p in config["players"]
+        Player(name=p["name"], is_female=p["is_female"], api_base_url=p["api_base_url"]) for p in config["players"]
     ]
     
+    # weblogger if w flag
+    web_mode = '-w' in sys.argv or 'w' in sys.argv
+    if web_mode:
+        logger = WebLogger()
+    else:
+        logger = ConsoleLogger()
+
     # Create game and start it
-    game = GameLeader(players, ConsoleLogger())
+    game = GameLeader(players, logger)
     can_start = game.start_game()
     if not can_start:
         LOG.error("ERROR: Failed to start game")
@@ -737,3 +784,7 @@ if __name__ == "__main__":
             type="GAME_OVER",
             content=f"Game over! {game.check_if_game_is_over()} win!"
         ))
+
+        # save the game logs to a file
+        #with open("game_logs2.json", "w", encoding="utf-8") as f:
+        #    json.dump([msg.model_dump_json() for msg in game.logger.msgs], f, indent=4)
