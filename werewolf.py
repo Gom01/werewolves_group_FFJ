@@ -167,6 +167,9 @@ class WerewolfPlayer(WerewolfPlayerInterface):
     ##Here add the logic to speak using OpenIA
     def speak(self) -> str:
 
+        # TODO : Print information + supprimer le je demande la parole !
+        # TODO : Voyante : dire qui est quoi !
+
         print(f"{self.name} is given the floor")
         messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
         alive_players_str = ", ".join(self.alive_players)
