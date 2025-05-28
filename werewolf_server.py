@@ -2,11 +2,14 @@ import sys
 from flask import Flask, request, jsonify
 from werewolf import WerewolfPlayer
 import logging
+import json
+from datetime import datetime
 
 def create_app():
     app = Flask(__name__)
     
-    app.config['WerewolfPlayer'] = None
+    # where players are stored. TODO check that not too many players are created; remove "old" players
+    app.config['WerewolfPlayers'] = {}
     
     @app.route('/new_game', methods=['POST'])
     def new_game():
@@ -24,7 +27,7 @@ def create_app():
             }
             ```
     
-        Returns: un JSON avec {"ack": True} pour checker que le joueur est bien connecté.
+        Returns: un JSON avec {"ack": True} pour checker que le joueur est bien connecté et un identifiant unique pour le joueur.
         """
 
         role = request.json.get("role")
@@ -40,20 +43,24 @@ def create_app():
         
         player = WerewolfPlayer.create(player_name, role, players_names.copy(), werewolves_count, werewolves.copy())
         if player:
-            app.config['WerewolfPlayer'] = player
-            return jsonify({"ack": True})
+            # add the player to the list of players
+            players = app.config['WerewolfPlayers']
+            player_id = len(players)
+            app.config['WerewolfPlayers'][player_id] = player
+
+            return jsonify({"ack": True, "player_id": player_id})
         else:
             return jsonify({"ack": False})
 
     
-    @app.route('/speak', methods=['POST'])
-    def speak():
+    @app.route('/<int:player_id>/speak', methods=['POST'])
+    def speak(player_id):
         """
         Endpoint appelé par le meneur pour donner la parole à un joueur.
         Le joueur doit alors prendre la parole dans le jeu. 
     
         Args:
-            Aucun paramètre n'est passé; c'est au joueur de déduire le contexte uniquement depuis ce qu'il a reçu via /notify.
+            player_id: L'identifiant du joueur qui doit parler
         
         Returns:
             Un message contenant le texte que le joueur dit. 
@@ -64,12 +71,17 @@ def create_app():
             }
             ```
         """
-        speech = app.config['WerewolfPlayer'].speak()
+        players = app.config['WerewolfPlayers']
+        if player_id not in players:
+            return jsonify({"error": f"Player {player_id} not found"}), 404
+        
+        player = players[player_id]
+        speech = player.speak()
         return jsonify({"speech": speech})
 
 
-    @app.route('/notify', methods=['POST'])
-    def notify():
+    @app.route('/<int:player_id>/notify', methods=['POST'])
+    def notify(player_id):
         """
         Endpoint appelé par le meneur pour deux objectifs principaux:
     
@@ -92,6 +104,7 @@ def create_app():
         La réponse suivra **strictement le schéma** ci-dessous, sans quoi elle sera ignorée par le meneur.
         
         Args:
+            player_id: L'identifiant du joueur
             message: Un message du meneur. Exemple:
             ```json
             {
@@ -108,10 +121,21 @@ def create_app():
             }
             ```
         """
+        players = app.config['WerewolfPlayers']
+        if player_id not in players:
+            return jsonify({"error": f"Player {player_id} not found"}), 404
+        
+        player = players[player_id]
         message = request.json.get('message')
-        intent = app.config['WerewolfPlayer'].notify(message)
+        intent = player.notify(message)
         return jsonify(intent.model_dump(mode="json"))
     
+    @app.route('/', methods=['GET', 'POST'])
+    def ping():
+        # prints the current time as a html page
+        return f"<html><body><h1>Werewolf server is running, {datetime.now()}</h1></body></html>"
+
+
     return app
 
 def run_app(port):
@@ -124,12 +148,22 @@ def run_app(port):
 
 if __name__ == '__main__':
 
-    # if a list of ports is provided, use it
+    # if a port is provided, use it
     if len(sys.argv) > 1:
         ports = [int(port) for port in sys.argv[1:]]
         print(f"Using ports: {ports}")
     else:
-        ports = range(5021, 5028) # by default, ports 5021 to 5027 inclusive
+        # read from players_config.json
+        with open("players_config.json", "r", encoding="utf-8") as f:
+            config = json.load(f)
+        ports = set()
+        for p in config["players"]:
+            base_url = p["api_base_url"]
+            if base_url.startswith("http://localhost:"):
+                port = base_url.split(":")[2].strip("/")
+                ports.add(int(port))
+            else:
+                print(f"WARNING: player {p['name']} not started by werewolf_server.py since it's not on localhost. Make sure it is up!")
 
     import multiprocessing
     
@@ -139,7 +173,7 @@ if __name__ == '__main__':
         p = multiprocessing.Process(target=run_app, args=(port,))
         p.start()
         processes.append(p)
-        print(f"Started server on port {port}")
+        print(f"Started Werewolf server on port {port}")
         print(f"To publish using ngrok:     ngrok http {port}")
     
     # Wait for all processes to complete
