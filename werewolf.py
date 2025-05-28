@@ -95,6 +95,10 @@ class WerewolfPlayer(WerewolfPlayerInterface):
 
         self.messages = []
         self.playerRest = players_names
+        self.players_names = players_names
+        self.role = role
+        self.werewolves = werewolves
+        self.werewolves_count = werewolves_count
 
     def speak(self) -> str:
         """    Appelé par le meneur pour donner la parole à un joueur.
@@ -197,16 +201,22 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             
         REPONSE OBLIGATOIRE en plus des réponses ci-dessus : 
         
+        VARIABLE :
+            want_to_speak:True|False
+            want_to_interrupt:True|False
+            vote_for:"Aline"|"Benjamin"|...|None
+            
         FORMAT :
-            want_to_speak: True | False,
-            want_to_interrupt: True | False,
-            vote_for: "Aline" | "Benjamin" | ... | None
+            <boolean> <boolean> <nom>
             
         want_to_speak : Sert à dire au meneur de jeu si tu souhaites parler. "True" si tu veux parler, "False" si tu ne veux pas.
         want_to_interrupt : Sert à dire au meneur de jeu que tu souhaites parler directement. "True" si tu veux parler directement, "False" si tu ne veux pas.
-        vote_for : Sert à dire pour qui tu souhaites voter. Soit le nom, soit "None" pour ne voter personne.
+        vote_for : Sert à dire pour qui tu souhaites voter. Soit le nom, soit None pour ne voter personne.
         
-        Information : Si c'est la nuit, ces 3 valeurs doivent être sur False, False, None respectivement.
+        <boolean> : True ou False
+        <nom> : nom du joueur
+        
+        Information : Si c'est la nuit et tu es un villagois, ces 3 valeurs doivent être sur False, False, None respectivement. Sinon, None doit être remplassé par la victime choisi par les loups lors du vote de la victime.
         """
 
         response = client.chat.completions.create(
@@ -220,4 +230,18 @@ class WerewolfPlayer(WerewolfPlayerInterface):
 
         self.messages.append(f"[{self.name}] " + response)
 
-        return Intent(want_to_speak=False, want_to_interrupt=False, vote_for="")
+        print("RESPONSE : ", response)
+
+        lines = response.split("\n")
+
+        #vote = lines[2].split(":")[1]
+        #if lines[2].split(":")[1] == "None":
+            #vote = ""
+
+        #return Intent(want_to_speak=bool(lines[0].split(":")[1]), want_to_interrupt=bool(lines[1].split(":")[1]), vote_for=vote)
+
+        vote = response.split(" ")[2]
+        if response.split(" ")[0] == "None":
+            vote = ""
+
+        return Intent(want_to_speak=bool(response.split(" ")[0]), want_to_interrupt=bool(response.split(" ")[0]), vote_for=vote)
