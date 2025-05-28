@@ -1,13 +1,23 @@
+# 
+# Webapp to display game logs. 
+# You DON'T NEED to run this, it will be automatically started by game_leader.py
+#
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional, Tuple
-from pydantic import BaseModel
 from datetime import datetime, timezone
+import json
+import logging
+import threading
+import time
+import webbrowser
+from typing import Any, Dict, List, Optional, Tuple
 
 from flask import Flask, request, jsonify, render_template, send_from_directory, Response
 from flask_socketio import SocketIO
-import json
-import os
+from pydantic import BaseModel
 
+# mute Flask and Werkzeug logs
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
+logging.getLogger('flask.app').setLevel(logging.ERROR)
 
 class GameLogEntry(BaseModel):
     timestamp: datetime = datetime.now(timezone.utc)
@@ -18,10 +28,7 @@ class GameLogEntry(BaseModel):
     public: bool = True
     context_data: Optional[Dict[str, Any]] = None
 
-    def to_llm_string(self, sequence_number: int = 0) -> str:
-        """
-        Creates a string representation of the log entry suitable for LLM consumption.
-        """
+    def to_string(self, sequence_number: int = 0) -> str:
         parts = [f"[{sequence_number}] Event: {self.type}"]
         if self.actor_name:
             parts.append(f"Actor: {self.actor_name}")
@@ -42,59 +49,54 @@ class Logger(ABC):
 
 class WebLogger(Logger):
 
-    def __init__(self):
+    def __init__(self, port=4999):
         self.entries = []
-        # start api server
+        self.port = port
         self.app = Flask(__name__, static_folder='public', static_url_path='/static')
         self.socketio = SocketIO(self.app, cors_allowed_origins="*")
         
-        # Route for the main page
         @self.app.route('/')
         def index():
             return send_from_directory('public', 'index.html')
         
-        # Route for log entries via HTTP (in addition to WebSockets)
-        @self.app.route('/log', methods=['POST'])
-        def handle_log_entry():
-            data = request.json
-            entry = GameLogEntry(**data)
-            return self.log_entry(entry)
+        @self.app.route('/api/logs')
+        def get_logs():
+            # Convert all entries to dict and ensure timestamp is a string
+            return jsonify([
+                {
+                    **entry.dict(),
+                    "timestamp": entry.timestamp.isoformat() if isinstance(entry.timestamp, datetime) else entry.timestamp
+                }
+                for entry in self.entries
+            ])
         
-        # Run the app with SocketIO
-        self.socketio.run(self.app, port=4999, debug=True)
+        # Start the server in a background thread
+        self._server_thread = threading.Thread(target=self._run_server, daemon=True)
+        self._server_thread.start()
+        # open browser after a short delay
+        threading.Timer(0.5, lambda: webbrowser.open_new(f'http://localhost:{self.port}/')).start()
 
-    def log_entry(self, entry: GameLogEntry) -> None:
-        self.entries.append(entry)
-        
-        # Convert entry to dict for JSON serialization
-        entry_dict = entry.dict()
-        # Convert datetime to ISO format string
-        entry_dict['timestamp'] = entry.timestamp.isoformat()
-        
-        # Emit the new log entry to all connected clients
-        self.socketio.emit('new_log_entry', entry_dict)
-        
-        return jsonify({"ack": True})
-        
+    def _run_server(self):
+        # debug=False, use_reloader=False to avoid thread issue
+        self.socketio.run(self.app, port=self.port, debug=False, use_reloader=False)
+
     def log(self, entry: GameLogEntry) -> None:
         self.entries.append(entry)
-        
-        # Convert entry to dict for JSON serialization
-        entry_dict = entry.dict()
-        # Convert datetime to ISO format string
+        entry_dict = entry.dict()  # fails with model_dump_json() because of datetime
         entry_dict['timestamp'] = entry.timestamp.isoformat()
-        
-        # Emit the new log entry to all connected clients
         self.socketio.emit('new_log_entry', entry_dict)
 
-
 if __name__ == "__main__":
-    # for testing 
+    #########################################################
+    # NOT MEANT TO BE RUN, ONLY FOR TESTING
+    #########################################################
     logger = WebLogger()
-    
-    # add some example log entries
-    logger.log(GameLogEntry(
-        type="announcement",
-        content="Game has started!"
-    ))
-    # TODO    
+    # load the game logs from the file
+    with open("game_logs3.json", "r", encoding="utf-8") as f:
+        game_logs = json.load(f)
+
+    for log in game_logs:
+        time.sleep(0.2)
+        print("Logging entry:", log)
+        logger.log(GameLogEntry(**json.loads(log)))
+    time.sleep(10)
