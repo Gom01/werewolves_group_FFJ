@@ -8099,3 +8099,985 @@ DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":fal
 DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
 DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
 DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (villageois)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":0}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Chloe (voyante)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":2}
+DEBUG: --> new_game for David (loup-garou)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":3}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Hugo (villageois)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Inès (villageois)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Julien (villageois)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Karine (loup-garou)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Léo (villageois)
+DEBUG: <-- new_game response from Léo: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Manon (villageois)
+DEBUG: <-- new_game response from Manon: {"ack":true,"player_id":12}
+DEBUG: --> new_game for Noé (loup-garou)
+DEBUG: <-- new_game response from Noé: {"ack":true,"player_id":13}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['David', 'Karine', 'Noé']
+INFO: Initial seer: Chloe
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['David', 'Karine', 'Noé']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Chloe
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: Seer asked to check player: Aline
+DEBUG: --> notify for Chloe: Le rôle de Aline est villageois
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: loup_garous: ['David', 'Karine', 'Noé']
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from David: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Karine: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Karine: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Noé: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Noé: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Aline', 'Aline', 'Elise'], rounds: 0
+DEBUG: valid_votes from loup garous: ['Aline', 'Aline', 'Elise']
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Aline, Noé a voté pour Elise
+DEBUG: <-- notify response from David: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Karine: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Aline, Noé a voté pour Elise
+DEBUG: <-- notify response from Karine: {"vote_for":"Elise","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Noé: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Aline, Noé a voté pour Elise
+DEBUG: <-- notify response from Noé: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Aline', 'Elise', 'Aline'], rounds: 1
+DEBUG: valid_votes from loup garous: ['Aline', 'Elise', 'Aline']
+DEBUG: no consensus found, rounds: 1
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Elise, Noé a voté pour Aline
+DEBUG: <-- notify response from David: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Karine: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Elise, Noé a voté pour Aline
+DEBUG: <-- notify response from Karine: {"vote_for":"Aline","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Noé: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Elise, Noé a voté pour Aline
+WARNING: Error in post_notify for player Noé: HTTPConnectionPool(host='localhost', port=5021): Max retries exceeded with url: /13//notify (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000027FA03F6120>: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))
+DEBUG: valid_votes: ['Aline', 'Aline'], rounds: 2
+DEBUG: valid_votes from loup garous: ['Aline', 'Aline']
+DEBUG: no consensus found, rounds: 2
+DEBUG: --> notify for David: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: David a voté pour Aline, Karine a voté pour Aline
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (voyante)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":0}
+DEBUG: --> new_game for Benjamin (loup-garou)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Chloe (villageois)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":2}
+DEBUG: --> new_game for David (villageois)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":3}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Hugo (villageois)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Inès (villageois)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Julien (loup-garou)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Karine (villageois)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Léo (loup-garou)
+DEBUG: <-- new_game response from Léo: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Manon (villageois)
+DEBUG: <-- new_game response from Manon: {"ack":true,"player_id":12}
+DEBUG: --> new_game for Noé (villageois)
+DEBUG: <-- new_game response from Noé: {"ack":true,"player_id":13}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Benjamin', 'Julien', 'Léo']
+INFO: Initial seer: Aline
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Benjamin', 'Julien', 'Léo']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Aline
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"D\u2019apr\u00e8s l\u2019historique des messages fourni, il n\u2019y a pour l\u2019instant que l\u2019introduction de la nuit et le moment o\u00f9 la voyante (moi, Aline) doit sonder un joueur. Aucun joueur n\u2019a encore parl\u00e9, ni agi publiquement. Aucun vote ni action suspecte n\u2019a donc pu \u00eatre observ\u00e9 : la seule action consign\u00e9e, c\u2019est l\u2019invitation \u00e0 la voyante de sonder quelqu\u2019un, \u00e0 la fin de la premi\u00e8re nuit.\n\n**Par cons\u00e9quent\u202f:**\n- Aucun joueur ne s\u2019est exprim\u00e9 ;\n- Aucun comportement suspect n\u2019a pu \u00eatre not\u00e9.\n\n**R\u00e9ponse :**\nIl n\u2019est donc pas possible pour l\u2019instant d\u2019identifier un joueur plus suspect qu\u2019un autre puisque je ne connais encore le r\u00f4le d\u2019aucun joueur (personne ne s\u2019est manifest\u00e9 ni n\u2019a agi publiquement).\n\n**R\u00e9sum\u00e9 :**\nAucun joueur n\u2019est pour le moment \u201cle plus suspect\u201d \u2013 il n\u2019y a pas encore assez d\u2019informations (ni propos ni actions) pour \u00e9tablir la moindre suspicion.","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: loup_garous: ['Benjamin', 'Julien', 'Léo']
+DEBUG: --> notify for Benjamin: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Benjamin: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Julien: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Julien: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Léo: Les Loups-Garous votent pour une nouvelle victime !!! 
+DEBUG: <-- notify response from Léo: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Inès', 'Inès', 'Manon'], rounds: 0
+DEBUG: valid_votes from loup garous: ['Inès', 'Inès', 'Manon']
+DEBUG: no consensus found, rounds: 0
+DEBUG: --> notify for Benjamin: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Benjamin: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Julien: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Julien: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Léo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Léo: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Inès', 'Inès', 'Manon'], rounds: 1
+DEBUG: valid_votes from loup garous: ['Inès', 'Inès', 'Manon']
+DEBUG: no consensus found, rounds: 1
+DEBUG: --> notify for Benjamin: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Benjamin: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Julien: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Julien: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Léo: Les Loups-Garous votent pour une nouvelle victime !!! Dernier vote: Benjamin a voté pour Inès, Julien a voté pour Inès, Léo a voté pour Manon
+DEBUG: <-- notify response from Léo: {"vote_for":"In\u00e8s","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: valid_votes: ['Inès', 'Inès', 'Inès'], rounds: 2
+DEBUG: valid_votes from loup garous: ['Inès', 'Inès', 'Inès']
+DEBUG: victim: Inès
+DEBUG: victim eliminated: Inès
+DEBUG: --> notify for Aline: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Benjamin: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Chloe: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for David: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Elise: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Frédéric: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Gabrielle: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Hugo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Julien: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Karine: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Léo: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Manon: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: --> notify for Noé: C'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux... Cette nuit, Inès a été mangé.e par les loups-garous. Son rôle était villageois. 
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Benjamin', 'Julien', 'Léo']
+INFO: Initial seer: Aline
+INFO: Loups-garous ont éliminé Inès (rôle villageois).
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Benjamin', 'Julien', 'Léo']
+INFO: ********************************************************************************
+DEBUG: discussion_round: 0
+DEBUG: valid_interrupts: []
+DEBUG: valid_want_to_speak: []
+DEBUG: want_to_speak candidates: []
+DEBUG: chatty player: Aline has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Benjamin has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Chloe has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: David has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Elise has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Frédéric has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Gabrielle has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Hugo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Julien has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Karine has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Léo has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Manon has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: chatty player: Noé has spoken 0 times out of 1, speech_ratio: 0.0, factor: 0
+DEBUG: number of None added: 0
+DEBUG: candidates: []
+DEBUG: no candidates, returning None
+DEBUG: speaker: None
+DEBUG: --> notify for Aline: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Benjamin: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Chloe: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for David: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Elise: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Frédéric: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Gabrielle: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Hugo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Julien: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Karine: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Léo: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Manon: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: --> notify for Noé: Le vote va bientôt commencer. Chaque joueur peut encore prendre la parole s'il le souhaite.
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":true}
+DEBUG: valid_want_to_speak: ['Elise', 'Aline', 'Chloe', 'Benjamin', 'Gabrielle', 'Manon', 'Karine', 'David', 'Noé', 'Hugo', 'Julien', 'Frédéric', 'Léo']
+DEBUG: speaker: David
+DEBUG: --> speech for player David
+DEBUG: <-- speech response from David: {"speech":"Je demande la parole.\n\n\"In\u00e8s, qui \u00e9tait villageoise, a \u00e9t\u00e9 \u00e9limin\u00e9e cette nuit. C\u2019est un coup dur pour nous car \u00e7a r\u00e9duit le nombre de villageois face aux loups-garous. Je propose qu\u2019on partage nos ressentis, m\u00eame brefs, sur ce qu\u2019il s\u2019est pass\u00e9 cette nuit. Est-ce que certains ont trouv\u00e9 des comportements suspects avant la premi\u00e8re nuit\u202f? Nous avons besoin d\u2019indices, car pour l\u2019instant on manque d\u2019informations. Faisons attention \u00e0 ne pas voter pr\u00e9cipitamment, surtout au premier tour.\""}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Elise
+DEBUG: --> speech for player Elise
+DEBUG: <-- speech response from Elise: {"speech":"Je demande la parole.\n\nJe suis d\u2019accord avec David : il nous manque des \u00e9l\u00e9ments pour accuser s\u00e9rieusement quelqu\u2019un. In\u00e8s n\u2019avait rien de particulier hier, donc \u00e7a ne nous donne pas encore de piste claire. Personnellement, aucun comportement ne m\u2019a paru vraiment louche lors de la premi\u00e8re phase, mais je pense que les loups-garous vont essayer de rester discrets au d\u00e9but. Je propose donc qu\u2019on \u00e9coute chacun bri\u00e8vement\u202f: \u00e7a peut parfois trahir un d\u00e9tail, m\u00eame minime. Restons vigilants et \u00e9vitons une \u00e9limination injuste ce tour-ci."}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Frédéric
+DEBUG: --> speech for player Frédéric
+DEBUG: <-- speech response from Frédéric: {"speech":"Je demande la parole.  \nJe rejoins David et Elise\u202f: on manque d\u2019indices s\u00e9rieux. La nuit ne nous \u00e9claire pas plus, In\u00e8s n\u2019avait rien montr\u00e9 de suspect ni attir\u00e9 l\u2019attention. Pour ce premier tour, \u00e9vitons d\u2019accuser au hasard. Je propose qu\u2019on observe surtout les r\u00e9actions, notamment ceux qui interviennent tr\u00e8s peu ou, au contraire, cherchent vite \u00e0 accuser sans argument. Restons prudents\u202f: mieux vaut ne pas \u00e9liminer un innocent d\u00e8s ce premier vote."}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Manon
+DEBUG: --> speech for player Manon
+DEBUG: <-- speech response from Manon: {"speech":"Je demande la parole.\n\nJe suis d\u2019accord avec ce qui a \u00e9t\u00e9 dit : on n\u2019a vraiment pas assez d\u2019\u00e9l\u00e9ments pour accuser quelqu\u2019un d\u00e8s ce premier tour. Je pense aussi qu\u2019on doit faire attention \u00e0 ne pas se laisser entra\u00eener dans des suspicions sans raison, ce serait trop risqu\u00e9, surtout apr\u00e8s avoir d\u00e9j\u00e0 perdu un villageois cette nuit.\n\nPour le moment, j\u2019observe simplement, mais je pense qu\u2019on devrait vraiment \u00e9couter tout le monde, m\u00eame bri\u00e8vement, pour voir si quelqu\u2019un semble mal \u00e0 l\u2019aise ou essaie de d\u00e9tourner la discussion. En tout cas, je pr\u00e9f\u00e8re ne pas voter contre quelqu\u2019un au hasard. Soyons prudents."}
+DEBUG: --> notify for Aline: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Benjamin: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Chloe: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for David: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Elise: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Frédéric: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Gabrielle: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Hugo: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Julien: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Karine: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Léo: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: --> notify for Noé: Manon a dit: Je demande la parole.
+
+Je suis d’accord avec ce qui a été dit : on n’a vraiment pas assez d’éléments pour accuser quelqu’un dès ce premier tour. Je pense aussi qu’on doit faire attention à ne pas se laisser entraîner dans des suspicions sans raison, ce serait trop risqué, surtout après avoir déjà perdu un villageois cette nuit.
+
+Pour le moment, j’observe simplement, mais je pense qu’on devrait vraiment écouter tout le monde, même brièvement, pour voir si quelqu’un semble mal à l’aise ou essaie de détourner la discussion. En tout cas, je préfère ne pas voter contre quelqu’un au hasard. Soyons prudents.
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: speaker: Chloe
+DEBUG: --> speech for player Chloe
+DEBUG: <-- speech response from Chloe: {"speech":"Je demande la parole.\n\nJe rejoins tout le monde : on n\u2019a pas vraiment d\u2019\u00e9l\u00e9ments concrets pour d\u00e9signer quelqu\u2019un, surtout au premier tour. In\u00e8s n\u2019avait rien laiss\u00e9 para\u00eetre et on sait bien que les loups-garous restent souvent discrets au d\u00e9but. \u00c0 mon avis, il vaut mieux \u00e9couter ceux qui n\u2019ont pas encore parl\u00e9 et observer s\u2019il y a des r\u00e9actions \u00e9tranges ou quelqu\u2019un qui \u00e9vite de s\u2019exprimer. Pour ma part, je propose d\u2019\u00e9viter de voter trop vite, on risquerait juste d\u2019\u00e9liminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve."}
+DEBUG: --> notify for Aline: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Benjamin: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for David: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Elise: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Frédéric: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Gabrielle: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Hugo: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Julien: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Karine: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Léo: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Manon: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: --> notify for Noé: Chloe a dit: Je demande la parole.
+
+Je rejoins tout le monde : on n’a pas vraiment d’éléments concrets pour désigner quelqu’un, surtout au premier tour. Inès n’avait rien laissé paraître et on sait bien que les loups-garous restent souvent discrets au début. À mon avis, il vaut mieux écouter ceux qui n’ont pas encore parlé et observer s’il y a des réactions étranges ou quelqu’un qui évite de s’exprimer. Pour ma part, je propose d’éviter de voter trop vite, on risquerait juste d’éliminer un innocent. Restons vigilants et faisons attention aux accusations sans preuve.
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Gabrielle
+DEBUG: --> speech for player Gabrielle
+DEBUG: <-- speech response from Gabrielle: {"speech":"Je demande la parole.\n\nJe partage l\u2019avis g\u00e9n\u00e9ral\u202f: on manque vraiment d\u2019indices. In\u00e8s \u00e9tait villageoise et n\u2019avait rien fait de particulier, donc son \u00e9limination ne nous donne aucune piste sur l\u2019identit\u00e9 des loups-garous. Pour le moment, je pr\u00e9f\u00e8re ne pas accuser sans raisons valables et \u00e9vitons d\u2019\u00e9liminer un innocent au hasard. Restons attentifs \u00e0 toutes les r\u00e9actions, surtout \u00e0 ceux qui restent trop en retrait ou cherchent \u00e0 acc\u00e9l\u00e9rer le vote. Soyons prudents et observons."}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Hugo
+DEBUG: --> speech for player Hugo
+DEBUG: <-- speech response from Hugo: {"speech":"Je demande la parole.\n\nComme tout le monde l\u2019a d\u00e9j\u00e0 soulign\u00e9, on a tr\u00e8s peu d\u2019informations concr\u00e8tes apr\u00e8s cette premi\u00e8re nuit. La disparition d\u2019In\u00e8s ne nous apporte aucune piste et personne n\u2019a eu de comportement \u00e9trange pour l\u2019instant. Je propose, comme plusieurs l\u2019ont sugg\u00e9r\u00e9, qu\u2019on prenne le temps d\u2019entendre tous ceux qui n\u2019ont pas encore parl\u00e9 ; parfois, un d\u00e9tail, une h\u00e9sitation ou un discours trop prudent peut trahir un r\u00f4le. Je pense aussi qu\u2019on doit faire attention \u00e0 ne pas se disperser avec des accusations sans r\u00e9el fondement. Restons calmes et vigilants pour le premier vote."}
+DEBUG: --> notify for Aline: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Benjamin: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Chloe: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for David: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Elise: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Frédéric: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Gabrielle: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Julien: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Karine: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Léo: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Manon: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: --> notify for Noé: Hugo a dit: Je demande la parole.
+
+Comme tout le monde l’a déjà souligné, on a très peu d’informations concrètes après cette première nuit. La disparition d’Inès ne nous apporte aucune piste et personne n’a eu de comportement étrange pour l’instant. Je propose, comme plusieurs l’ont suggéré, qu’on prenne le temps d’entendre tous ceux qui n’ont pas encore parlé ; parfois, un détail, une hésitation ou un discours trop prudent peut trahir un rôle. Je pense aussi qu’on doit faire attention à ne pas se disperser avec des accusations sans réel fondement. Restons calmes et vigilants pour le premier vote.
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: speaker: Karine
+DEBUG: --> speech for player Karine
+DEBUG: <-- speech response from Karine: {"speech":"Je demande la parole.\n\nJe rejoins tout le monde : on a tr\u00e8s peu d\u2019indices concrets, alors je pense qu\u2019il vaut mieux \u00e9viter d\u2019accuser sans raison solide au premier tour. In\u00e8s n\u2019avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment \u00e0 cibler les loups-garous. \u00c0 ce stade, je pr\u00e9f\u00e8re attendre d\u2019entendre ceux qui ne se sont pas encore exprim\u00e9s, histoire d\u2019observer les r\u00e9actions de chacun. Restons prudents et essayons surtout de ne pas \u00e9liminer un autre villageois \u00e0 l\u2019aveugle d\u00e8s ce d\u00e9but de partie."}
+DEBUG: --> notify for Aline: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Benjamin: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Chloe: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for David: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Elise: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Frédéric: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Gabrielle: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Hugo: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Julien: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Léo: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Manon: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: --> notify for Noé: Karine a dit: Je demande la parole.
+
+Je rejoins tout le monde : on a très peu d’indices concrets, alors je pense qu’il vaut mieux éviter d’accuser sans raison solide au premier tour. Inès n’avait rien fait de suspect, donc sa disparition ne nous aide pas vraiment à cibler les loups-garous. À ce stade, je préfère attendre d’entendre ceux qui ne se sont pas encore exprimés, histoire d’observer les réactions de chacun. Restons prudents et essayons surtout de ne pas éliminer un autre villageois à l’aveugle dès ce début de partie.
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Aline
+DEBUG: --> speech for player Aline
+DEBUG: <-- speech response from Aline: {"speech":"Je demande la parole.\n\nComme plusieurs l'ont d\u00e9j\u00e0 dit, il est tr\u00e8s risqu\u00e9 d'accuser au hasard d\u00e8s ce premier vote, surtout apr\u00e8s avoir perdu un villageois cette nuit. Pour l\u2019instant, j'observe les attitudes\u202f: tout le monde reste tr\u00e8s prudent, presque trop. Ce que je trouve notable, c\u2019est qu\u2019aucun joueur n\u2019essaie vraiment de pointer du doigt ou d\u2019apporter un soup\u00e7on, comme si on avait peur d\u2019attirer l\u2019attention sur soi.\n\nJe propose donc d\u2019\u00e9couter encore les derniers qui ne se sont pas exprim\u00e9s. Je reste vigilante, mais personnellement je pr\u00e9f\u00e8re m\u2019abstenir d\u2019accuser aujourd\u2019hui sans davantage d\u2019indices. Restons ensemble et attentifs \u00e0 la mani\u00e8re dont chacun \u00e9volue\u2026"}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: speaker: Julien
+DEBUG: --> speech for player Julien
+DEBUG: <-- speech response from Julien: {"speech":"Je demande la parole.\n\nJe partage l\u2019avis g\u00e9n\u00e9ral\u202f: il est vraiment trop t\u00f4t pour accuser qui que ce soit, surtout apr\u00e8s la perte d\u2019In\u00e8s sans la moindre piste. Tout le monde reste tr\u00e8s prudent pour l\u2019instant ; je ne remarque rien de suspect dans les interventions pr\u00e9c\u00e9dentes \u2014 chacun essaie simplement de ne pas faire d\u2019erreur et de prot\u00e9ger le village.\n\nJe pense qu\u2019il est pr\u00e9f\u00e9rable, pour ce premier vote, de ne pas se pr\u00e9cipiter ni cibler quelqu\u2019un sans raison r\u00e9elle. Observons encore un peu et essayons de recueillir davantage d\u2019indices lors des prochains tours. Restons vigilants et solidaires."}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Léo
+DEBUG: --> speech for player Léo
+DEBUG: <-- speech response from Léo: {"speech":"L\u00e9o demande la parole.\n\nJe rejoins l\u2019avis g\u00e9n\u00e9ral : il est trop t\u00f4t pour accuser qui que ce soit s\u00e9rieusement, surtout apr\u00e8s la perte d\u2019In\u00e8s sans aucune piste claire. Tout le monde semble prudent, et il n\u2019y a eu aucune r\u00e9action anormale pendant cette premi\u00e8re matin\u00e9e. Je propose de continuer \u00e0 observer, surtout ceux qui interviennent peu ou pas du tout. Pour l\u2019instant, je pr\u00e9f\u00e8re ne viser personne\u202f: mieux vaut \u00e9viter d\u2019\u00e9liminer un innocent sur un coup de t\u00eate. Restons attentifs aux prochains \u00e9changes\u202f!"}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: speaker: Noé
+DEBUG: --> speech for player Noé
+DEBUG: <-- speech response from Noé: {"speech":"Je demande la parole.\n\nComme tout le monde, je trouve qu\u2019on manque vraiment d\u2019indices. In\u00e8s \u00e9tait villageoise et n\u2019avait rien laiss\u00e9 para\u00eetre, donc on n\u2019a aucune piste concr\u00e8te. Je pense aussi qu\u2019il faut \u00e9viter d\u2019accuser au hasard aujourd\u2019hui : apr\u00e8s avoir d\u00e9j\u00e0 perdu un villageois, ce serait trop risqu\u00e9 d\u2019\u00e9liminer un innocent. \u00c0 ce stade, je propose d\u2019observer surtout les attitudes dans les tours \u00e0 venir, et d\u2019\u00e9couter les derniers qui n\u2019ont pas encore parl\u00e9. Restons group\u00e9s et attentifs pour l\u2019instant, sans vote pr\u00e9cipit\u00e9."}
+DEBUG: --> notify for Aline: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Benjamin: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Chloe: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for David: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Elise: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Frédéric: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Gabrielle: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Hugo: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Julien: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Karine: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Léo: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: --> notify for Manon: Noé a dit: Je demande la parole.
+
+Comme tout le monde, je trouve qu’on manque vraiment d’indices. Inès était villageoise et n’avait rien laissé paraître, donc on n’a aucune piste concrète. Je pense aussi qu’il faut éviter d’accuser au hasard aujourd’hui : après avoir déjà perdu un villageois, ce serait trop risqué d’éliminer un innocent. À ce stade, je propose d’observer surtout les attitudes dans les tours à venir, et d’écouter les derniers qui n’ont pas encore parlé. Restons groupés et attentifs pour l’instant, sans vote précipité.
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: speaker: Benjamin
+DEBUG: --> speech for player Benjamin
+DEBUG: <-- speech response from Benjamin: {"speech":"Benjamin dit : Je demande la parole.\n\nJe rejoins ce qui a \u00e9t\u00e9 dit par tout le monde : \u00e0 ce stade, on n\u2019a vraiment aucune info fiable pour accuser qui que ce soit. In\u00e8s n\u2019avait rien montr\u00e9 de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours o\u00f9 plus d\u2019indices pourront appara\u00eetre. Restons calmes et vigilants, et essayons d\u2019\u00e9viter des accusations infond\u00e9es."}
+DEBUG: --> notify for Aline: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Chloe: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for David: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Elise: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Frédéric: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Gabrielle: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Hugo: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Julien: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Karine: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Léo: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Manon: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: --> notify for Noé: Benjamin a dit: Benjamin dit : Je demande la parole.
+
+Je rejoins ce qui a été dit par tout le monde : à ce stade, on n’a vraiment aucune info fiable pour accuser qui que ce soit. Inès n’avait rien montré de particulier et tout le monde semble prudent dans ses interventions. Mieux vaut ne pas voter au hasard et risquer une autre perte inutile dans le village. Observons chacun, surtout lors des prochains tours où plus d’indices pourront apparaître. Restons calmes et vigilants, et essayons d’éviter des accusations infondées.
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":true,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Aline: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Benjamin: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Chloe: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for David: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Elise: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Frédéric: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Gabrielle: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Hugo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Julien: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Karine: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Léo: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Manon: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: --> notify for Noé: Il est temps de voter. Donnez maintenant votre intention de vote.
+DEBUG: <-- notify response from Julien: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":"Je m'abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":"Je m'abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":"Je m\u2019abstiens.","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":"Je m\u2019abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":"Je m'abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":"Je m\u2019abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":"Je m'abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":"Manon","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":"Je m'abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":"Karine","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":"Je m\u2019abstiens","want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":"Je m\u2019abstiens","want_to_interrupt":false,"want_to_speak":false}
+INFO: Le joueur Je m'abstiens n'est pas dans la partie. Aline ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est plus dans la partie. Aline ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est pas dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est plus dans la partie. David ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens. n'est pas dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens. n'est plus dans la partie. Chloe ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est pas dans la partie. Gabrielle ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est plus dans la partie. Gabrielle ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est pas dans la partie. Noé ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est plus dans la partie. Noé ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est pas dans la partie. Manon ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est plus dans la partie. Manon ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est pas dans la partie. Karine ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est plus dans la partie. Karine ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est pas dans la partie. Elise ne peut pas voter pour lui.
+INFO: Le joueur Je m'abstiens n'est plus dans la partie. Elise ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est pas dans la partie. Hugo ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est plus dans la partie. Hugo ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est pas dans la partie. Frédéric ne peut pas voter pour lui.
+INFO: Le joueur Je m’abstiens n'est plus dans la partie. Frédéric ne peut pas voter pour lui.
+DEBUG: valid_votes: [('Julien', 'Manon'), ('Benjamin', 'Manon'), ('Léo', 'Karine')]
+DEBUG: victim: Manon
+DEBUG: --> notify for Aline: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Benjamin: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Chloe: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for David: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Elise: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Frédéric: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Gabrielle: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Hugo: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Julien: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Karine: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Léo: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: --> notify for Noé: Julien a voté pour Manon, Benjamin a voté pour Manon, Léo a voté pour Karine. Ainsi, Manon est mort(e) et son rôle était villageois.
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Aline
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+WARNING: Overall timeout waiting for responses in announce_to_all after 10s
+WARNING: Request to Aline did not complete, cancelling
+DEBUG: <-- notify response from Aline: {"vote_for":"Le joueur le plus suspect dont je ne connais pas le r\u00f4le, d\u2019apr\u00e8s l\u2019historique des messages, est **Julien**.\n\n**Explications :**\n\n1. **Premi\u00e8re intervention tardive, ton tr\u00e8s prudent**  \nJulien attend que tout le monde se soit exprim\u00e9 avant de prendre la parole (message [13]), alors qu\u2019il est possible dans ce jeu d\u2019intervenir plus t\u00f4t. Cela peut traduire une volont\u00e9 d\u2019observer avant de se positionner, ce qui est typique d\u2019un loup-garou qui veut \u00e9viter de commettre une faute d\u2019expression ou d\u2019accusation qui pourrait le trahir.\n\n2. **Absence d\u2019avis personnel ou d\u2019analyse**  \nJulien ne se distingue \u00e0 aucun moment, ne propose aucune piste, ne soup\u00e7onne personne, ne rel\u00e8ve aucun d\u00e9tail fin. Il se contente de \u00ab partager l\u2019avis g\u00e9n\u00e9ral \u00bb en martelant des messages de prudence, sans engagement. Ce manque de prise de risque est souvent li\u00e9 \u00e0 un r\u00f4le de loup-garou en d\u00e9but de partie, surtout quand tout le monde affiche d\u00e9j\u00e0 une posture prudente.\n\n3. **Son vote contre un villageois sans justification particuli\u00e8re**  \nJulien sera l\u2019un des trois \u00e0 voter pour Manon (villageoise), ce qui entra\u00eene l\u2019\u00e9limination d\u2019un innocent. Il n\u2019avait pourtant exprim\u00e9 aucune m\u00e9fiance envers elle, ni justification pr\u00e9cise. Ce vote ressemble \u00e0 celui d\u2019un loup-garou qui pousse \u00e0 \u00e9liminer un villageois dans la confusion du premier tour, profitant de l\u2019absence d\u2019indices.\n\n4. **Synchronisation avec d\u2019autres votes potentiellement suspects**  \nJulien vote pour Manon en m\u00eame temps que Benjamin, et L\u00e9o vote contre Karine. Sur les trois votants, deux orientent contre une villageoise, aidant probablement le camp loup-garou \u00e0 progresser, alors que la majorit\u00e9 plaidait pour l\u2019abstention ou la prudence extr\u00eame.\n\n**Conclusion\u202f:**  \nJulien a un comportement excessivement prudent, attend la majorit\u00e9 avant de s\u2019exprimer, ne prend clairement aucun risque, puis vote contre une innocente sans justification. Tout ceci en fait, \u00e0 ce stade du jeu, le joueur dont l\u2019attitude m\u2019appara\u00eet la plus suspecte parmi ceux dont je ne connais pas encore le r\u00f4le.","want_to_interrupt":false,"want_to_speak":false}
+INFO: Logging setup completed
+DEBUG: --> new_game for Aline (villageois)
+DEBUG: <-- new_game response from Aline: {"ack":true,"player_id":0}
+DEBUG: --> new_game for Benjamin (villageois)
+DEBUG: <-- new_game response from Benjamin: {"ack":true,"player_id":1}
+DEBUG: --> new_game for Chloe (loup-garou)
+DEBUG: <-- new_game response from Chloe: {"ack":true,"player_id":2}
+DEBUG: --> new_game for David (villageois)
+DEBUG: <-- new_game response from David: {"ack":true,"player_id":3}
+DEBUG: --> new_game for Elise (villageois)
+DEBUG: <-- new_game response from Elise: {"ack":true,"player_id":4}
+DEBUG: --> new_game for Frédéric (villageois)
+DEBUG: <-- new_game response from Frédéric: {"ack":true,"player_id":5}
+DEBUG: --> new_game for Gabrielle (villageois)
+DEBUG: <-- new_game response from Gabrielle: {"ack":true,"player_id":6}
+DEBUG: --> new_game for Hugo (villageois)
+DEBUG: <-- new_game response from Hugo: {"ack":true,"player_id":7}
+DEBUG: --> new_game for Inès (loup-garou)
+DEBUG: <-- new_game response from Inès: {"ack":true,"player_id":8}
+DEBUG: --> new_game for Julien (villageois)
+DEBUG: <-- new_game response from Julien: {"ack":true,"player_id":9}
+DEBUG: --> new_game for Karine (voyante)
+DEBUG: <-- new_game response from Karine: {"ack":true,"player_id":10}
+DEBUG: --> new_game for Léo (villageois)
+DEBUG: <-- new_game response from Léo: {"ack":true,"player_id":11}
+DEBUG: --> new_game for Manon (loup-garou)
+DEBUG: <-- new_game response from Manon: {"ack":true,"player_id":12}
+DEBUG: --> new_game for Noé (villageois)
+DEBUG: <-- new_game response from Noé: {"ack":true,"player_id":13}
+INFO: ********************************************************************************
+INFO: Game summary:
+INFO: Initial werewolves: ['Chloe', 'Inès', 'Manon']
+INFO: Initial seer: Karine
+INFO: Active players: ['Aline', 'Benjamin', 'Chloe', 'David', 'Elise', 'Frédéric', 'Gabrielle', 'Hugo', 'Inès', 'Julien', 'Karine', 'Léo', 'Manon', 'Noé']
+INFO: Active werewolves: ['Chloe', 'Inès', 'Manon']
+INFO: ********************************************************************************
+DEBUG: --> notify for Aline: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Benjamin: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Chloe: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for David: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Elise: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Frédéric: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Gabrielle: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Hugo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Inès: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Julien: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Karine: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Léo: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Manon: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: --> notify for Noé: C'est la nuit, tout le village s’endort, les joueurs ferment les yeux.
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Karine: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: seer: Karine
+DEBUG: --> notify for Aline: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Benjamin: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Chloe: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for David: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Elise: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Frédéric: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Gabrielle: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Hugo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Inès: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Julien: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Karine: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Léo: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Manon: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: --> notify for Noé: La Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !
+DEBUG: <-- notify response from Elise: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Frédéric: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from David: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Benjamin: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Aline: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Chloe: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Manon: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Inès: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Julien: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Noé: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Léo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Hugo: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+DEBUG: <-- notify response from Gabrielle: {"vote_for":null,"want_to_interrupt":false,"want_to_speak":false}
+WARNING: Overall timeout waiting for responses in announce_to_all after 10s
+WARNING: Request to Karine did not complete, cancelling
+WARNING: Timeout in post_notify for player Karine after 10s

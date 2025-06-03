@@ -229,19 +229,22 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         alive_players_str = ", ".join(self.alive_players)
         wolves_str = ", ".join(self.werewolves)
 
-        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
-                Tu es un joueur de ce jeu.    
+        PROMPT = f"""    
+                CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.
                 Voici ton nom : {self.name}.
                 Voici ton rôle : {self.role}.
                 Voici Les rôles connu : {self.known_roles}. 
                 Voici l'historique des votes : {self.vote_history}.
                 Voici les noms des autres joueurs encore dans la partie : {alive_players_str}.
-                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
-                Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
-                Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
-                TA TÂCHE :    
-                    Donne moi uniquement le nom du joueur dont tu veux connaître le rôle.
+                Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.
+                Voici l'historique des messages depuis le début du jeu : {messages_with_index}
+                TA TÂCHE :
+                    D'après l'historique des messages, trouve le joueur le plus suspect dont tu ne connais pas le rôle
+                    puis donne moi uniquement son nom.
+                    
         """
+
+        # DEBUG : et explique moi pourquoi ce joueur
 
         response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
 
