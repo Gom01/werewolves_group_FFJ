@@ -1,319 +1,247 @@
+import os
+
+import openai
 from pydantic import BaseModel
 from abc import ABC, abstractmethod
 from typing import List
 import random
 import re
 
-PLAYER_NAMES = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gaston"]
-PLAYER_ROLES = ["villageois", "voyante", "loup-garou"]
+# Initialise un client
+import openai
+from api_key import OPENAI_API_KEY
 
-#This function parse the raw message and then find what are the important informations
-def parse_message(message: str) -> dict:
-    data = {}
-    name_pattern = r"(" + "|".join(PLAYER_NAMES) + ")"
-    role_pattern = r"(" + "|".join(PLAYER_ROLES) + ")"
-
-    #Voyante info
-    if message.startswith("La Voyante se réveille"):
-        data["type"] = "voyante_wakeup"
-    elif "Le rôle de " in message:
-        m = re.search(rf"Le rôle de {name_pattern} est {role_pattern}", message)
-        if m:
-            data["type"] = "voyante_result"
-            data["player"] = m.group(1)
-            data["role"] = m.group(2)
-
-    #Loup garous
-    #Wake up but nothing to do
-    elif "Les Loups-Garous se réveillent" in message:
-        data["type"] = "werewolves_wakeup"
-    #Should vote for someone
-    elif "Les Loups-Garous votent pour une nouvelle victime" in message:
-        data["type"] = "werewolves_vote"
-        vote_pattern = rf"{name_pattern} a voté pour {name_pattern}"
-        data["werewolves_votes"] = re.findall(vote_pattern, message)  # Returns [] if no votes
-
-    #Night
-    elif "C'est la nuit" in message:
-        data["type"] = "night_start"
-    elif "Cette nuit, " in message and "a été mangé.e" in message:
-        m = re.search(rf"Cette nuit, {name_pattern} a été mangé\.e.*rôle était {role_pattern}", message)
-        if m:
-            data["type"] = "morning_victim"
-            data["victim"] = m.group(1)
-            data["role"] = m.group(2)
-    elif "Cette nuit, personne n'a été mangé.e" in message:
-        data["type"] = "morning_no_victim"
-
-    #Starting voting
-    elif message.startswith("Le vote va bientôt commencer"):
-        data["type"] = "pre_vote"
-    elif message.startswith("Il est temps de voter"):
-        data["type"] = "vote_now"
-    elif "est mort(e) et son rôle était" in message:
-        m = re.search(rf"Ainsi, {name_pattern} est mort\(e\) et son rôle était {role_pattern}", message)
-        if m:
-            data["type"] = "vote_result"
-            data["victim"] = m.group(1)
-            data["role"] = m.group(2)
-        vote_pattern = rf"{name_pattern} a voté pour {name_pattern}"
-        data["votes"] = re.findall(vote_pattern, message)
-    elif "Il n'y a pas de victime" in message:
-        data["type"] = "vote_no_victim"
-    elif " a dit: " in message:
-        m = re.match(rf"{name_pattern} a dit: (.+)", message)
-        if m:
-            data["type"] = "speech"
-            data["speaker"] = m.group(1)
-            data["speech"] = m.group(2)
-    elif "n'a pas répondu à temps" in message:
-        m = re.match(rf"{name_pattern} n'a pas répondu à temps", message)
-        if m:
-            data["type"] = "timeout"
-            data["player"] = m.group(1)
-    return data
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 
 class Intent(BaseModel):
-    want_to_speak: bool = False
-    want_to_interrupt: bool = False
-    vote_for: str = None
+    want_to_speak:bool = False
+    want_to_interrupt:bool = False
+    vote_for:str = None
+
+
 
 
 class WerewolfPlayerInterface(ABC):
 
     @classmethod
-    def create(cls, name: str, role: str, players_names: List[str], werewolves_count: int,
-               werewolves: List[str]) -> 'WerewolfPlayerInterface':
+    def create(cls, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]) -> 'WerewolfPlayerInterface':
         return cls(name, role, players_names, werewolves_count, werewolves)
 
     @abstractmethod
     def speak(self) -> str:
+        """Generate a response when it's the player's turn to speak."""
         pass
 
     @abstractmethod
     def notify(self, message: str) -> Intent:
+        """Process a notification and determine the player's intent."""
         pass
 
 
+
+
 class WerewolfPlayer(WerewolfPlayerInterface):
+    rules = """"
+       Bienvenue dans LLMs-Garous, une version adaptée du jeu "Les Loups-Garous de Thiercelieux".
+    
+       🎯 Objectif :
+       - Il y a 7 joueurs : 2 loups-garous, 1 voyante, 4 villageois.
+       - Les loups-garous doivent éliminer tous les villageois et la voyante.
+       - Les villageois et la voyante doivent identifier et éliminer les loups-garous.
+    
+       🕓 Déroulement d’un tour :
+       Le jeu alterne entre deux phases : la nuit et le jour.
+    
+       🌙 Phase de nuit :
+       - Le meneur annonce "C'est la nuit, tout le village s'endort, les joueurs ferment les yeux."
+       - Les loups-garous se réveillent, se reconnaissent et votent pour une victime.
+       - La voyante se réveille et peut sonder un joueur pour connaître son rôle.
+       - Les villageois dorment et ne font rien.
+    
+       🌞 Phase de jour :
+       - Le meneur annonce le résultat de la nuit : s’il y a une victime et son rôle.
+       - Les joueurs prennent la parole, s’accusent, défendent ou se taisent.
+       - Chaque joueur peut :
+           - demander à parler
+           - interrompre quelqu’un (max 2 fois par partie, peut être refusé par le meneur)
+           - voter pendant la phase de vote
+       - Après les discussions, un vote a lieu. Le joueur ayant le plus de votes est éliminé (en cas d’égalité : personne n’est éliminé).
+       - Le rôle du joueur éliminé est révélé.
+    
+       🗣️ Gestion de la parole :
+       - Le meneur accorde la parole à ceux qui la demandent.
+       - Les joueurs silencieux depuis plusieurs tours ont plus de chances d’être sélectionnés.
+       - Un même joueur ne peut pas parler deux fois de suite.
+    
+       Ton but en tant que joueur est de survivre le plus longtemps possible... ou de faire gagner ton camp.
+       """
 
-    #This code is exectuted only at the beginning of the game
     def __init__(self, name: str, role: str, players_names: List[str], werewolves_count: int, werewolves: List[str]) -> None:
-        #Basics informations
         self.name = name
-        self.role = role
-        self.players_names = players_names
-        self.werewolves_count = werewolves_count
-        self.werewolves = werewolves
+        print(f"WerewolfPlayer {self.name} created")
 
-        #Updated informations
+        beginning_prompt = (""
+                            f"Ton role est : {role}"
+                            f"Les noms des joueurs sont : {players_names}"
+                            f"Il y a {werewolves_count} loup-garou dans cette partie"
+                            f"Si ton role est loup-garou les autres loup-garous sont : {werewolves}")
+
+        response = client.chat.completions.create(
+            model="gpt-4.1",
+            messages=[
+                {"role": "user", "content": beginning_prompt}
+            ])
+
         self.messages = []
-        self.alive_players = set(players_names) - {self.name}
-        self.vote_history = []  # list of (voter, voted)
-        self.known_roles = {}   # player -> role
-        self.speech_count = {p: 0 for p in players_names if p != self.name}
-        self.statements = {p: [] for p in players_names if p != self.name}
+        self.playerRest = players_names
+        self.players_names = players_names
+        self.role = role
+        self.werewolves = werewolves
+        self.werewolves_count = werewolves_count
 
-        if self.name == "Aline":
-            print(f"Beggining of the game :"
-                  f"-name: {self.name}\n"
-                  f"-role: {self.role}\n"
-                  f"-other player : {self.alive_players}\n"
-                  f"-num of loup-garous: {self.werewolves_count}\n"
-                  f"-names of loup-garous {self.werewolves}\n")
-            print()
-
-    #When I can speak :
-    ##Here add the logic to speak using OpenIA
     def speak(self) -> str:
-        #If there was no context then i say nothing
-        if not self.messages:
-            return ""
+        """    Appelé par le meneur pour donner la parole à un joueur.
+        Le joueur doit alors prendre la parole dans le jeu.
+        Args:
+            Aucun paramètre n'est passé; c'est au joueur de déduire le contexte uniquement depuis ce qu'il a reçu précédemment via notify().
+        Returns:
+            speech: Un message contenant le texte que le joueur dit, par exemple "Je crois que Aline ment car ..."
+            Un joueur peut décider de ne pas parler (retourner un `speech` vide)
+        """
 
-        last_msg = self.messages[-1]
-        parsed = parse_message(last_msg)
+        print(f"{self.name} is given the floor")
+        messages_with_index = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
+        players_str = ", ".join(self.players_names)
+        wolves_str = ", ".join(self.werewolves)
+        PROMPT = f"""    CONTEXTE :    Voici notre jeu et ses règles : {self.rules}.    
+        Tu es un joueur de ce jeu.    
+        Voici ton nom : {self.name}.
+        Voici ton rôle : {self.role}.
+        Voici les noms des autres joueurs au début de la partie : {players_str}.    
+        Voici le nombre de loups-garous au début de la partie : {self.werewolves_count}.    
+        Si tu as le rôle de "loup-garou", voici la liste du ou des autres "loups-garous" : {wolves_str}.    
+        Voici l'historique des messages depuis le début du jeu :    {messages_with_index}    
+        TA TÂCHE :    Tu dois soit répondre, soit ne pas répondre. Tu as 5 secondes au maximum pour réfléchir et répondre.    
+        Tu ne dois pas être agressif !    
+        Si tu es un "loup-garou", tu ne dois pas te révéler !    
+        Tu peux mentir pour gagner !    
+        Tu dois respecter les règles !    
+        Ton objectif est de gagner !    """
+        response = client.chat.completions.create(model="gpt-4.1", messages=[{"role": "user", "content": PROMPT}]).choices[0].message.content
 
-        self.speech_count[self.name] = self.speech_count.get(self.name, 0) + 1
+        return response
 
-        if parsed.get("type") == "morning_victim":
-            suspects = list(self.alive_players)
-            if not suspects:
-                return ""
-            silent = sorted(suspects, key=lambda p: self.speech_count.get(p, 0))
-            msg = f"Je pense que {silent[0]} est suspect."
-            if self.name == "Aline":
-                print(msg)
-            return msg
-
-        return ""
-
-    def choose_vote(self) -> str:
-        #Here I can also use chatGPT API to choose to vote
-        # Si je ne suis pas loup-garou, je peux cibler les loups connus
-        if self.role != "loup-garou":
-            known_wolves = [p for p, r in self.known_roles.items()
-                            if r == "loup-garou" and p in self.alive_players]
-            if known_wolves:
-                person_to_vote = known_wolves[0]
-                if self.name == "Aline":
-                    print(f"I know {person_to_vote} is a werewolf. Voting for them.")
-                return person_to_vote
-
-        # Cibler tous les vivants sauf moi
-        suspects = [p for p in self.alive_players if p != self.name]
-
-        # Si je ne suis pas loup-garou, exclure villageois et voyante connus
-        if self.role != "loup-garou":
-            suspects = [p for p in suspects if self.known_roles.get(p) not in {"villageois", "voyante"}]
-        else:
-            # Si je suis un loup-garou, ne pas voter pour mes alliés loups-garous
-            suspects = [p for p in suspects if p not in self.werewolves]
-
-        if not suspects:
-            if self.name == "Aline":
-                print("No valid suspects found.")
-            return None
-
-        # Vérifier si tous les suspects ont parlé autant
-        min_count = min(self.speech_count.get(p, 0) for p in suspects)
-        least_talkative = [p for p in suspects if self.speech_count.get(p, 0) == min_count]
-
-        if least_talkative:
-            person_to_vote = random.choice(least_talkative)
-            if self.name == "Aline":
-                print(f"Voting for: {person_to_vote} (among least talkative)")
-            return person_to_vote
-
-        person_to_vote = random.choice(suspects)
-        if self.name == "Aline":
-            print(f"Fallback vote for: {person_to_vote}")
-        return person_to_vote
-
-    #If dead remove the player
-    def remove_player(self, player: str, role: str):
-        self.alive_players.discard(player)
-        self.known_roles[player] = role
-        self.speech_count.pop(player, None)
-        self.statements.pop(player, None)
-        self.vote_history = [(voter, voted) for (voter, voted) in self.vote_history if
-                             voter != player and voted != player]
-
-    # When receiving a message from the game master
     def notify(self, message: str) -> Intent:
-        try:
-            if self.name == "Aline":
-                print("I have been notified...")
+        """
+        Appelé par le meneur pour deux objectifs principaux:
+    
+        1. Informer le joueur sur l'état du jeu:
+           - Qui a parlé et ce qui a été dit
+           - Si c'est la nuit
+           - Les rumeurs
+           - Si c'est le moment de voter
+           - Le résultat du vote (qui a été éliminé et son rôle)
+           - Autres informations pertinentes sur l'état du jeu
+    
+        Le message est **sous forme de texte uniquement** et c'est au joueur de l'interpréter en fonction du contexte.
+        Le message contient uniquement le dernier (nouveau) message du meneur, c'est au joueur de mémoriser les informations des messages précédents.
+        
+        2. Recevoir en retour les intentions du joueur:
+           - Demande de prise de parole
+           - Demande d'interruption
+           - Vote
+    
+        La réponse suivra **strictement le schéma** ci-dessous, sans quoi elle sera ignorée par le meneur.
+        
+        Args:
+            message: "C'est le matin, le village se réveille. Aline a été tuée cette nuit. Aline était une villageoise."
+        
+        Returns:
+            Une Intent (voir la classe ci-dessus l. 8) contenant les actions du joueur. Schéma:
+                want_to_speak: True | False,
+                want_to_interrupt: True | False,
+                vote_for: "Aline" | "Benjamin" | ... | None
 
-            self.messages.append(message)
-            intent = Intent()
-            parsed = parse_message(message)
-            msg_type = parsed.get("type")
+        """
+        print(f"{self.name} received message: {message}")
+        # TODO implement me
 
-            #VOYANTE
-            #Voyante vote for a random person (must return intent.vote_for)
-            if msg_type == "voyante_wakeup" and self.role == "voyante":
-                choices = list(self.alive_players)
-                if choices:
-                    randomPerson = random.choice(choices)
-                    if self.name == "Aline":
-                        print(f"I'm the voyante and I can find out the role of a person")
-                        print(f"I decide to vote for : {randomPerson}")
-                    intent.vote_for = randomPerson
-
-            #Voyante get the role from the other player
-            elif msg_type == "voyante_result":
-                self.known_roles[parsed["player"]] = parsed["role"]
-                if self.name == "Aline":
-                    print(f"I learned the role of this player : {parsed['player']} role : {parsed['role']}")
-
-            #LOUP GAROUS
-            #Loup garou vote for a random person
-            elif msg_type == "werewolves_vote" and self.role == "loup-garou":
-                eligible = list(self.alive_players - set(self.werewolves) - {self.name})
-                if self.name == "Aline":
-                    print(f"I can vote only for : {eligible}")
-
-                vote_counts = {}
-                for voter, voted in parsed.get("werewolves_votes", []):
-                    if voter in self.werewolves and voted in eligible:
-                        vote_counts[voted] = vote_counts.get(voted, 0) + 1
-                if vote_counts:
-                    intent.vote_for = max(vote_counts.items(), key=lambda x: x[1])[0]
-                    if self.name == "Aline":
-                        print(f"Maximum voted person : {intent.vote_for}")
-                elif eligible:
-                    randomPerson = random.choice(eligible)
-                    if self.name == "Aline":
-                        print(f"No maximum vote before : {randomPerson}")
-                    intent.vote_for = randomPerson
-
-            #End of the night morning victim
-            elif msg_type == "morning_victim":
-                victim = parsed.get("victim")
-                role = parsed.get("role")
-                if victim and role:
-                    self.remove_player(victim, role)
-                    if self.name == "Aline":
-                        print(f"{victim} was killed with the role of {role}")
-                intent.want_to_speak = False
-
-            elif msg_type == "morning_no_victim":
-                if self.name == "Aline":
-                    print("Nobody died this morning")
-                intent.want_to_speak = False
-
-            #Voting
-            elif msg_type == "pre_vote":
-                if self.name == "Aline":
-                    print("I can speak or interrupt we are voting")
-
-            elif msg_type == "vote_now":
-                intent.vote_for = self.choose_vote()
-
-            elif msg_type == "vote_no_victim":
-                if self.name == "Aline":
-                    print("No victim after the vote")
-
-            elif msg_type == "vote_result":
-                victim = parsed.get("victim")
-                role = parsed.get("role")
-                if victim and role:
-                    self.remove_player(victim, role)
-                    if self.name == "Aline":
-                        print(f"{victim} was killed role {role}")
-                for voter, voted in parsed.get("votes", []):
-                    if voter != self.name:  # Ne pas enregistrer son propre vote
-                        self.vote_history.append((voter, voted))
-                        if self.name == "Aline":
-                            print(f"Added vote: {voter} -> {voted}")
-                    elif self.name == "Aline":
-                        print(f"Ignored my own vote: {voter} -> {voted}")
-
-            elif msg_type == "speech":
-                        speaker = parsed["speaker"]
-                        self.speech_count[speaker] += 1
-                        self.statements[speaker].append(parsed["speech"])
-                        intent.want_to_interrupt = random.random() < 0.2
-
-            elif msg_type == "timeout":
-                intent.want_to_speak = False
+        self.messages.append("[Meneur de jeu] " + message)
 
 
-            if self.name == "Aline":
-                print("Turn infos : ")
-                print(self.messages)
-                print(self.alive_players)
-                print(self.vote_history)
-                print(self.known_roles)
-                print(self.speech_count)
-                print(self.statements)
-                print()
+        # donne le nom de la personne la plus suspect dans la liste
+        PROMPT = f"""
+        
+        Voici le message donner par le meneur de jeu : {message}
+        
+        Voici l'historique des messages de la partie : {self.messages} 
+        
+        Par rapport au message et à l'historique des messages, voici toutes les actions possible. Il est possible d'en faire plusieurs à la fois.
+        
+        1) Si un joueur est mort après la nuit, donne le nom de la victime et son rôle.
+        EXEMPLE : 
+            Meneur de jeu : "Aline est mort et son rôle était villageois"
+            Toi : "mort:Aline:villageois"
+            
+        2) Si c'est le moment de voter, donne un nom aléatoire dans la liste {self.playerRest}.
+        Tu ne peux pas voter pour toi-même.
+        Tu ne peux pas voter pour quelqu'un qui est déjà mort.
+        EXEMPLE : 
+            Meneur de jeu : "Il est temps de voter"
+            Toi : "vote:David"
+            
+        3) Si c'est le résultat du vote, donne le nom de la victime et son rôle.
+        EXEMPLE:
+            Meneur du jeu : "Ainsi, Frédéric est mort et son rôle était villageois"
+            Toi : "mort:Frédéric:villageois"
+            
+        4) Si c'est la tombée de la nuit, pas besoin de répondre.
+            
+            
+        REPONSE OBLIGATOIRE en plus des réponses ci-dessus : 
+        
+        VARIABLE :
+            want_to_speak:True|False
+            want_to_interrupt:True|False
+            vote_for:"Aline"|"Benjamin"|...|None
+            
+        FORMAT :
+            <boolean> <boolean> <nom>
+            
+        want_to_speak : Sert à dire au meneur de jeu si tu souhaites parler. "True" si tu veux parler, "False" si tu ne veux pas.
+        want_to_interrupt : Sert à dire au meneur de jeu que tu souhaites parler directement. "True" si tu veux parler directement, "False" si tu ne veux pas.
+        vote_for : Sert à dire pour qui tu souhaites voter. Soit le nom, soit None pour ne voter personne.
+        
+        <boolean> : True ou False
+        <nom> : nom du joueur
+        
+        Information : Si c'est la nuit et tu es un villagois, ces 3 valeurs doivent être sur False, False, None respectivement. Sinon, None doit être remplassé par la victime choisi par les loups lors du vote de la victime.
+        """
 
+        response = client.chat.completions.create(
+            model="gpt-4.1",
+            messages=[
+                {"role": "user", "content": PROMPT }
+            ]).choices[0].message.content
 
-            return intent
-        except Exception as e:
-            import traceback
-            print(f"[ERROR] Exception in notify() for {self.name}: {e}")
-            traceback.print_exc()
-            return Intent()  # safe fallback
+        """if "mort" in response:
+            self.playerRest.remove(response.split(":")[1])"""
+
+        self.messages.append(f"[{self.name}] " + response)
+
+        print("RESPONSE : ", response)
+
+        lines = response.split("\n")
+
+        #vote = lines[2].split(":")[1]
+        #if lines[2].split(":")[1] == "None":
+            #vote = ""
+
+        #return Intent(want_to_speak=bool(lines[0].split(":")[1]), want_to_interrupt=bool(lines[1].split(":")[1]), vote_for=vote)
+
+        vote = response.split(" ")[2]
+        if response.split(" ")[0] == "None":
+            vote = ""
+
+        return Intent(want_to_speak=bool(response.split(" ")[0]), want_to_interrupt=bool(response.split(" ")[0]), vote_for=vote)
