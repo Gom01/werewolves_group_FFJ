@@ -13,6 +13,41 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 PLAYER_NAMES = ["Aline", "Benjamin", "Chloe", "David", "Elise", "Frédéric", "Gabrielle", "Hugo", "Inès", "Julien", "Karine", "Léo", "Manon", "Noé"]
 PLAYER_ROLES = ["villageois", "voyante", "loup-garou"]
 
+rules = """"
+       Bienvenue dans LLMs-Garous, une version adaptée du jeu "Les Loups-Garous de Thiercelieux".
+
+       🎯 Objectif :
+       - Il y a 14 joueurs : 3 loups-garous, 1 voyante, 10 villageois.
+       - Les loups-garous doivent éliminer tous les villageois et la voyante.
+       - Les villageois et la voyante doivent identifier et éliminer les loups-garous.
+
+       🕓 Déroulement d’un tour :
+       Le jeu alterne entre deux phases : la nuit et le jour.
+
+       🌙 Phase de nuit :
+       - Le meneur annonce "C'est la nuit, tout le village s'endort, les joueurs ferment les yeux."
+       - Les loups-garous se réveillent, se reconnaissent et votent pour une victime.
+       - La voyante se réveille et peut sonder un joueur pour connaître son rôle.
+       - Les villageois dorment et ne font rien.
+
+       🌞 Phase de jour :
+       - Le meneur annonce le résultat de la nuit : s’il y a une victime et son rôle.
+       - Les joueurs prennent la parole, s’accusent, défendent ou se taisent.
+       - Chaque joueur peut :
+           - demander à parler
+           - interrompre quelqu’un (max 2 fois par partie, peut être refusé par le meneur)
+           - voter pendant la phase de vote
+       - Après les discussions, un vote a lieu. Le joueur ayant le plus de votes est éliminé (en cas d’égalité : personne n’est éliminé).
+       - Le rôle du joueur éliminé est révélé.
+
+       🗣️ Gestion de la parole :
+       - Le meneur accorde la parole à ceux qui la demandent.
+       - Les joueurs silencieux depuis plusieurs tours ont plus de chances d’être sélectionnés.
+       - Un même joueur ne peut pas parler deux fois de suite.
+
+       Ton but en tant que joueur est de survivre le plus longtemps possible... ou de faire gagner ton camp.
+       """
+
 
 #This function parse the raw message and then find what are the important information (convert them inside a dictionnary)
 def parse_message(message: str) -> dict:
@@ -141,16 +176,17 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         roles = ", ".join(f"{k}: {v}" for k, v in self.known_roles.items())
         accusations = ", ".join([p for p, targets in self.accusations.items() if self.name in targets])
         suspicion = ", ".join(f"{p}: {self.vote_tendency[p]}" for p in self.alive_players if p in self.vote_tendency)
-        messages = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages[-6:]))
+        messages = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
         speech_counts = ", ".join(f"{p}: {self.speech_count.get(p, 0)}" for p in self.alive_players)
         statements = "\n".join(f"{p}: « {lines[-1]} »" for p, lines in self.statements.items() if lines)
-        vote_history = ", ".join(f"{voter}→{voted}" for voter, voted in self.vote_history[-5:])
+        vote_history = ", ".join(f"{voter}→{voted}" for voter, voted in self.vote_history)
         last_vote = self.last_vote_target or "Aucun"
         speech_count_myself = self.speech_count.get(self.name, 0)
-        random_prob = random.randint(0, 2)
+        random_prob = random.randint(0, 3)
 
+        # 👉 Construction du prompt principal
         prompt = f"""
-        Tu es un joueur du jeu des Loups-Garous de Thiercelieux.
+            {rules}
 
         📍 Situation actuelle : {msg_type}
         🧍 Joueurs encore en vie : {alive}
@@ -165,31 +201,45 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         💬 Accusations contre moi : {accusations}
         📩 Derniers messages reçus :
         {messages}
-        🗣️ Nombre de fois que MOI j’ai parlé : {speech_count_myself}
+        🗣️ Tu as déjà parlé {speech_count_myself} fois.
         🎲 Probabilité aléatoire pour parler : {random_prob}
 
         TA TÂCHE :
         - Tu veux survivre et aider ton camp à gagner.
         - Ne répète pas ce que d'autres ont déjà dit dans les messages ou déclarations.
-        - Parle si tu as une info, une idée utile.
+        - Ne parle pas simplement de la victime de la nuit à moins que cela serve à identifier un suspect précis.
+        - Ton discours doit contenir une hypothèse claire ou une interprétation logique (ex : “Untel a voté contre un villageois hier et ne dit rien aujourd’hui → je le trouve suspect.”).
+        - Prends position : si tu suspectes quelqu’un, dis-le. Si tu veux défendre quelqu’un, explique pourquoi.
+        - Ne reste pas neutre ou vague.
+        - Si personne n'a voté pour personne (vote_history) alors ne parle pas du tour précédent (il s'agit du premier tour)
         - Parle aussi si la probabilité est 0. (uniquement tant que tu n'as pas parlé)
         - Si tu as parlé récemment arrête de parler.
+        - Ne fais référence qu’aux 2-3 derniers votes ou discours.
+        - Appuie-toi sur les rôles révélés par la voyante ou sur des contradictions dans les votes.
         - Ne parle pas trop : compare combien de fois tu as parlé par rapport aux autres.
         - Tu peux INTERRUPT uniquement si on t'accuse ou si quelqu’un est très suspect, et si tu as encore des interruptions.
         - Sinon, reste SILENCIEUX.
         - N'accuse personne si aucun vote n'a été fait.
+        - Si aucun vote n'a été fait alors ne parle pas et attends (sauf si la probilité est 0)
+        - Si tu es la voyante, et que tu connais le rôle d’un joueur important (ex : loup-garou), révèle-le maintenant clairement (« Je suis la voyante, j’ai vu que X est loup-garou »).
+        - Si tu es loup-garou évite de vote contre un loup-garou (sauf si nécessaire)
 
         Réponds avec :
-        - Uniquement ton message (1 phrase) si tu veux parler.
+        - Uniquement ton message (1 phrase courte) si tu veux parler.
         - "INTERRUPT: <message>" si tu veux interrompre.
         - "SILENT" si tu ne dis rien.
+        - N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
         """
 
+        # 🎯 Appel à GPT
         response = client.chat.completions.create(
             model="gpt-4.1",
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
 
+        print(response)
+
+        # 🎮 Interprétation de la réponse
         if response.startswith("INTERRUPT:") and self.interrupt_count > 0:
             intent.want_to_interrupt = True
             self.msg_to_say = response[len("INTERRUPT:"):].strip()
@@ -208,6 +258,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         accusers = ", ".join([p for p in unknown_or_suspects if self.name in self.accusations.get(p, set())])
         messages = "".join(f"[{i}] {line}" for i, line in enumerate(self.messages))
         alive = ", ".join(self.alive_players)
+        lastvote = self.last_vote_target
 
         vote_freq = {}
         for _, voted in self.vote_history:
@@ -215,35 +266,53 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 vote_freq[voted] = vote_freq.get(voted, 0) + 1
         vote_trends = ", ".join(f"{p}: {vote_freq[p]}" for p in sorted(vote_freq, key=vote_freq.get, reverse=True))
 
+        known_enemy_roles = []
+        for p, r in self.known_roles.items():
+            if r == "loup-garou" and self.role in ["villageois", "voyante"]:
+                known_enemy_roles.append(p)
+            elif r in ["voyante", "villageois"] and self.role == "loup-garou":
+                known_enemy_roles.append(p)
+
+        enemies_str = ", ".join(known_enemy_roles)
+        known_roles_str = ", ".join(f"{p}: {r}" for p, r in self.known_roles.items())
+
         prompt = f"""
-                Tu es un joueur villageois dans le jeu des Loups-Garous de Thiercelieux.
-            
-                Voici les joueurs encore en vie : {alive}.
-                Voici ceux dont tu ne connais pas encore le rôle : {', '.join(unknown_or_suspects)}.
-                Niveaux de suspicion : {suspicion}.
-                T'ont accusé : {accusers}.
-                Ont voté contre toi : {recent_attackers}.
-                Fréquence à laquelle chaque joueur a été visé par les votes précédents : {vote_trends}.
-                Messages précédents : {messages}
-            
-                TA TÂCHE :
-                - Choisis une cible à voter contre.
-                - Essaie d'éviter de voter plusieurs fois d'affilée pour la même personne sans bonne raison.
-                - Tiens compte des joueurs qui ont déjà été souvent visés (ou au contraire jamais).
-                - Donne UNIQUEMENT le nom du joueur choisi.
-                """
+        
+        règle : {rules}
+        Tu es un joueur dans le jeu des Loups-Garous de Thiercelieux.
+
+        🎭 Ton rôle : {self.role}
+        🧍 Joueurs en vie : {alive}
+        🧠 Rôles connus : {known_roles_str}
+        ⚔️ Ennemis connus (à cibler) : {enemies_str}
+        👁️ Joueurs dont tu ne connais pas encore le rôle : {', '.join(unknown_or_suspects)}
+        ❗ Niveau de suspicion : {suspicion}
+        🗯️ Ceux qui t'ont accusé : {accusers}
+        🗳️ Ont voté contre toi au dernier tour : {recent_attackers}
+        🔁 Fréquence des votes : {vote_trends}
+        📩 Messages précédents : {messages}
+        🎯 Dernière personne que tu as visée : {lastvote}
+
+        TA TÂCHE :
+        - Si tu connais un joueur qui est ton **ennemi**, vote contre lui en priorité.
+        - Sinon, vote contre celui qui t'accuse le plus ou qui est le plus suspect.
+        - NE vote PAS contre :
+            - un loup-garou si tu es loup-garou,
+            - un villageois si tu es villageois ou voyante.
+        - Ne répète pas les messages d’autres joueurs (sauf pour confirmer une information utile).
+        - Ne t'accuse pas toi-même.
+        - Ne vote pas deux fois de suite pour le même joueur sans raison.
+        - Donne UNIQUEMENT le nom du joueur choisi.
+        - N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
+        """
+
         response = client.chat.completions.create(
             model="gpt-4.1",
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
 
-        # Optionnel : empêcher le vote pour la même personne trois fois d'affilée
-        if response == self.last_vote_target:
-            alternatives = [p for p in unknown_or_suspects if p != response]
-            if alternatives:
-                response = random.choice(alternatives)
-
         self.last_vote_target = response
+        print(response)
         return response
 
     def choose_vote_voyante(self) -> str:
@@ -254,8 +323,11 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         alive = ", ".join(self.alive_players)
 
         prompt = f"""
+            {rules}
+            
             Tu es la voyante dans une partie de Loups-Garous de Thiercelieux.
         
+            Voici ton nom : {self.name}
             Voici les joueurs encore en vie : {alive}.
             Voici les joueurs dont tu NE connais PAS le rôle : {', '.join(unknown_players)}.
             Voici le niveau de suspicion actuel : {suspicion}.
@@ -263,6 +335,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             Messages échangés : {messages}
         
             TA TÂCHE :
+            - Ne vote pas pour toi
             - Choisis une cible à sonder cette nuit parmi ceux dont tu ignores encore le rôle.
             - Priorise les joueurs suspects ou hostiles envers toi.
             - Donne UNIQUEMENT le nom du joueur que tu veux sonder.
@@ -272,6 +345,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
 
+        print(response)
         return response
 
     def choose_vote_wolf(self) -> str:
@@ -287,6 +361,9 @@ class WerewolfPlayer(WerewolfPlayerInterface):
 
         if not wolf_votes:
             prompt = f"""
+                    
+                    {rules}
+                    Ton nom : {self.name}
                     Tu es un loup-garou. 
                     Joueurs en vie : {alive}. 
                     Loups : {wolves}. 
@@ -297,12 +374,16 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 
                     TA TÂCHE :
                     - Choisis une cible parmi les non-loups.
+                    - Ne vote jamais pour des loups
                     - Donne la priorité aux joueurs les plus hostiles envers toi ou les plus suspects.
                     - Donne UNIQUEMENT le nom du joueur que tu veux éliminer.
                     """
         else:
             votes = ", ".join(f"{v} → {t}" for v, t in wolf_votes)
             prompt = f"""
+            
+                    {rules}
+                    Ton nom : {self.name}
                     Tu es un loup-garou. 
                     Joueurs en vie : {alive}. 
                     Loups : {wolves}. 
@@ -314,18 +395,16 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 
                     TA TÂCHE :
                     - Essaie de coordonner le vote avec les autres loups.
+                    - Ne vote jamais pour des loups
                     - Garde ta cible précédente si elle est populaire.
                     - Sinon, vote pour celle qui est la plus souvent ciblée.
                     - Donne UNIQUEMENT le nom d'un joueur.
-                    - Ne repète pas ce que dise les autres joueurs (sauf si tu veux confirmer qqch)
-                    - Si tu es la voyante donne les role et le nom des personne que tu connais
-                    -
                     """
         response = client.chat.completions.create(
             model="gpt-4.1",
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
-
+        print(response)
         self.last_vote_target = response
         return response
 
@@ -455,10 +534,6 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                     self.accusations[speaker].add(self.name)
                     self.vote_tendency[speaker] += 1
 
-                # Interruption limitée à 2 fois
-                if self.interrupt_count > 0 and random.random() < 0.2:
-                    intent.want_to_interrupt = True
-                    self.interrupt_count -= 1
                 self.choose_to_speak_interrupt("speech", intent)
 
             # TIMEOUT = élimination
@@ -469,7 +544,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
                 self.choose_to_speak_interrupt("timeout", intent)
 
             if self.name == "Aline":
-                self.display()
+                #self.display()
+                print()
 
             if intent.want_to_interrupt:
                 self.interrupt_count -= 1
