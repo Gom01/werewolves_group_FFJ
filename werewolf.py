@@ -204,7 +204,6 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         🎲 Probabilité aléatoire pour parler : {random_prob}
 
         TA TÂCHE :
-        - Au premier tour dis que tu es villageois et demande le rôles des autres (sauf si tu es voyante)
         - Si tu es loup-garou ne défends pas trop les autres loup-garous sinon tu vas être suspecté
         - Tu veux survivre et aider ton camp à gagner.
         - Ne répète pas ce que d'autres ont déjà dit dans les messages ou déclarations.
