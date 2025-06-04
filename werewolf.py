@@ -205,6 +205,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         🎲 Probabilité aléatoire pour parler : {random_prob}
 
         TA TÂCHE :
+        - Si tu es loup-garou ne défends pas trop les autres loup-garous sinon tu vas être suspecté
         - Tu veux survivre et aider ton camp à gagner.
         - Ne répète pas ce que d'autres ont déjà dit dans les messages ou déclarations.
         - Ne parle pas simplement de la victime de la nuit à moins que cela serve à identifier un suspect précis.
@@ -300,6 +301,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         TA TÂCHE :
         - Si tu connais un joueur qui est ton **ennemi**, vote contre lui en priorité.
         - Sinon, vote contre celui qui t'accuse le plus ou qui est le plus suspect.
+        - Si tu penses savoir qui est la voyante vote contre elle.
         - NE vote PAS contre :
             - un loup-garou si tu es loup-garou,
             - un villageois si tu es villageois ou voyante.
