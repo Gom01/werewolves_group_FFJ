@@ -228,8 +228,10 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         - Uniquement ton message (1 phrase courte) si tu veux parler.
         - "INTERRUPT: <message>" si tu veux interrompre.
         - "SILENT" si tu ne dis rien.
-        - N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
+        - N’utilise que des caractères ASCII
         """
+
+        # N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
 
         # 🎯 Appel à GPT
         response = client.chat.completions.create(
@@ -292,6 +294,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         🔁 Fréquence des votes : {vote_trends}
         📩 Messages précédents : {messages}
         🎯 Dernière personne que tu as visée : {lastvote}
+        Ton nom : {self.name}
 
         TA TÂCHE :
         - Si tu connais un joueur qui est ton **ennemi**, vote contre lui en priorité.
@@ -299,12 +302,15 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         - NE vote PAS contre :
             - un loup-garou si tu es loup-garou,
             - un villageois si tu es villageois ou voyante.
+            - Toi même
         - Ne répète pas les messages d’autres joueurs (sauf pour confirmer une information utile).
         - Ne t'accuse pas toi-même.
         - Ne vote pas deux fois de suite pour le même joueur sans raison.
         - Donne UNIQUEMENT le nom du joueur choisi.
-        - N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
+        - N’utilise que des caractères ASCII
         """
+
+        # simples (lettres, chiffres, ponctuation classique).
 
         response = client.chat.completions.create(
             model="gpt-4.1",
