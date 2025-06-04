@@ -45,9 +45,8 @@ rules = """"
        - Les joueurs silencieux depuis plusieurs tours ont plus de chances d’être sélectionnés.
        - Un même joueur ne peut pas parler deux fois de suite.
 
-       Ton but en tant que joueur est de survivre le plus longtemps possible... ou de faire gagner ton camp.
+       Ton but en tant que joueur est de faire gagner ton camp. Tu joues uniquement contre des autres LLM.
        """
-
 
 #This function parse the raw message and then find what are the important information (convert them inside a dictionnary)
 def parse_message(message: str) -> dict:
@@ -205,9 +204,11 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         🎲 Probabilité aléatoire pour parler : {random_prob}
 
         TA TÂCHE :
+        - Au premier tour dis que tu es villageois et demande le rôles des autres (sauf si tu es voyante)
         - Si tu es loup-garou ne défends pas trop les autres loup-garous sinon tu vas être suspecté
         - Tu veux survivre et aider ton camp à gagner.
         - Ne répète pas ce que d'autres ont déjà dit dans les messages ou déclarations.
+        - Cherche les incohérences dans les messages des autres.
         - Ne parle pas simplement de la victime de la nuit à moins que cela serve à identifier un suspect précis.
         - Ton discours doit contenir une hypothèse claire ou une interprétation logique (ex : “Untel a voté contre un villageois hier et ne dit rien aujourd’hui → je le trouve suspect.”).
         - Prends position : si tu suspectes quelqu’un, dis-le. Si tu veux défendre quelqu’un, explique pourquoi.
@@ -221,6 +222,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         - Tu peux INTERRUPT uniquement si on t'accuse ou si quelqu’un est très suspect, et si tu as encore des interruptions.
         - Sinon, reste SILENCIEUX.
         - N'accuse personne si aucun vote n'a été fait.
+        - Si tu accuses qqn donne une raison valable (soit clair et précis)
+        - Ne révèle jamais ton rôle si tu es un loup-garous (ou ment sur celui-ci)
         - Si aucun vote n'a été fait alors ne parle pas et attends (sauf si la probilité est 0)
         - Si tu es la voyante, et que tu connais le rôle d’un joueur important (ex : loup-garou), révèle-le maintenant clairement (« Je suis la voyante, j’ai vu que X est loup-garou »).
         - Si tu es loup-garou évite de vote contre un loup-garou (sauf si nécessaire)
