@@ -228,7 +228,6 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         - Uniquement ton message (1 phrase courte) si tu veux parler.
         - "INTERRUPT: <message>" si tu veux interrompre.
         - "SILENT" si tu ne dis rien.
-        - N’utilise que des caractères ASCII
         """
 
         # N’utilise que des caractères simples (lettres, chiffres, ponctuation classique).
@@ -309,7 +308,6 @@ class WerewolfPlayer(WerewolfPlayerInterface):
         - Ne t'accuse pas toi-même.
         - Ne vote pas deux fois de suite pour le même joueur sans raison.
         - Donne UNIQUEMENT le nom du joueur choisi.
-        - N’utilise que des caractères ASCII
         """
 
         # simples (lettres, chiffres, ponctuation classique).
