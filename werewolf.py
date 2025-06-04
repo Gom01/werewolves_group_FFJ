@@ -239,6 +239,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
 
+        response = response.replace('\u202f', ' ')
+
         print(response)
 
         # 🎮 Interprétation de la réponse
@@ -317,6 +319,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
 
+        response = response.replace('\u202f', ' ')
+
         self.last_vote_target = response
         print(response)
         return response
@@ -350,6 +354,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             model="gpt-4.1",
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
+
+        response = response.replace('\u202f', ' ')
 
         print(response)
         return response
@@ -410,6 +416,9 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             model="gpt-4.1",
             messages=[{"role": "user", "content": prompt}]
         ).choices[0].message.content.strip()
+
+        response = response.replace('\u202f', ' ')
+
         print(response)
         self.last_vote_target = response
         return response
