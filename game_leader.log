@@ -33365,3 +33365,6 @@ WARNING: Error in post_notify for player Hugo: ('Connection aborted.', Connectio
 WARNING: Error in post_notify for player Benjamin: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
 WARNING: Error in post_notify for player Karine: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
 INFO: Logging setup completed
+DEBUG: --> new_game for Aline (loup-garou)
+WARNING: Error in post_new_game for Aline: HTTPConnectionPool(host='localhost', port=5021): Max retries exceeded with url: /new_game (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001C21FFE7A10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+ERROR: ERROR: Failed to start game
