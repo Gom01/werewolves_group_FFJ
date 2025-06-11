@@ -1,62 +1,129 @@
-# Réponses aux questions :
+# 🐺 LLM Garous
 
-Nombre de tokens utilisés pour :
+## 💰 Question 1 : Prix de notre modèle
 
-- 1 token ~= 4 chars in English
-- 1 token ~= ¾ words
-- 100 tokens ~= 75 words
+Voici une **estimation approximative** du coût de notre modèle selon les cas d’usage rencontrés pendant les parties.
 
-Ou 
+---
 
-- 1-2 sentence ~= 30 tokens
-- 1 paragraph ~= 100 tokens
-- 1,500 words ~= 2048 tokens
+### 📌 Conditions :
 
-Nous utilisons :
-- réponse du LLm : 35 mots
-- règles : 250 mots 
-- speak ou interrupt : 600 mots + règles = 850 mots
-- voyante : 100 + règles = 350 mots
-- loup-garou : 110 + règles = 360 mots
-- choosevote : 350 + règles =  600 mots
- 
-Voici l’estimation du nombre de tokens pour chacun de tes cas, en utilisant la règle :
-Nombre de tokens ≈ nombre de mots ÷ 0,75
-(ou, plus rapide : nombre de mots × 1,33)
+- Estimation basée sur un **joueur qui intervient environ 4 fois par jour** (votes compris).
+- **Prix par partie estimé** :
+  - **Minimum** : 0,03 $
+  - **Maximum** : 0,06 $
 
-Calculs détaillés
-- Réponse : Tokens ≈ 35 × 1,33 ≈  47 tokens
-- Règles : Tokens ≈ 250 × 1,33 ≈ 333 tokens
-- Speak ou interrupt : Tokens ≈ 850 × 1,33 ≈ 1130 tokens
-- Voyante : Tokens ≈ 350 × 1,33 ≈ 465 tokens
-- Loup-garou : Tokens ≈ 360 × 1,33 ≈ 480 tokens
-- Choose_vote : Tokens ≈ 600 × 1,33 ≈ 800 tokens
+- Coûts pour 1 000 000 de tokens avec **GPT-4.1** (`gpt-4.1-2025-04-14`) :
+  - **Input** : 2,00 $ / 1M tokens
+  - **Cached input** : 0,50 $ / 1M tokens
+  - **Output** : 8,00 $ / 1M tokens
 
-7 tours, pour un joueur au maximum, en parlant 4 fois au tour au maximum (speak ou vote) :
+---
 
-Entrées :
-- 7 * 4 * 1130 = 31 640 tokens (pire des cas, que de parler 4 fois, jusqu'à la fin) (Cached)
-- 7 * 4 * 800 = 22 400 tokens (parle pas et rôle villageois)
+### 🔢 Estimations de conversion des mots en tokens :
 
-Sorties : 
-- 7 * 4 * 47 = 1316 tokens pour les sorties.
+- 1 token ≈ 4 caractères en anglais
+- 1 token ≈ ¾ mots
+- 100 tokens ≈ 75 mots
+- 
+Formule pratique :
+**Nombre de tokens ≈ nombre de mots × 1,33**
 
-Coûts pour 1 000 000 de tokens:
-gpt-4.1 (gpt-4.1-2025-04-14) : \$ 2.00 Input, \$ 0.50 Cached input , \$ 8,00 Output 
+---
 
+### 📊 Nombre de mots utilisés selon les cas :
 
-Donc (joueur va jusqu^à la fin de partie):
-(0,5 / (1 000 000)) * 31 640 + (8 / (1 000 000)) * 1 316 =  0,03 \$  (pire des cas, que de parler 4 fois, jusqu'à la fin) (Cached)
-(2,0 / (1 000 000)) * 22 400 + (8 / (1 000 000)) * 1 316 =  0,06 \$  (parle pas et rôle villageois)
+| Cas d’usage            | Mots approx. | Tokens approx. |
+|------------------------|--------------|----------------|
+| Réponse simple du LLM  | 35 mots      | ~47 tokens     |
+| Règles seules          | 250 mots     | ~333 tokens    |
+| `speak` ou `interrupt` | 850 mots     | ~1 131 tokens  |
+| Voyante                | 350 mots     | ~467 tokens    |
+| Loup-garou             | 360 mots     | ~480 tokens    |
+| Choix de vote (`choosevote`) | 600 mots | ~800 tokens    |
 
+---
+
+## 📊 2. Calculs détaillés
+
+Ces estimations nous ont permis de dimensionner les coûts par partie en fonction du type d’intervention et de la fréquence des appels API.
+
+### 🔢 Approximation des tokens par type de message
+
+| Type de contenu      | Mots (approx.) | Tokens estimés (×1,33) |
+|----------------------|----------------|--------------------------|
+| Réponse              | 35             | ≈ 47 tokens              |
+| Règles               | 250            | ≈ 333 tokens             |
+| Speak ou Interrupt   | 850            | ≈ 1 130 tokens           |
+| Voyante              | 350            | ≈ 465 tokens             |
+| Loup-garou           | 360            | ≈ 480 tokens             |
+| Choose_vote          | 600            | ≈ 800 tokens             |
+
+---
+
+### 🧮 Simulation de deux cas extrêmes
+
+#### 🧑‍💼 Cas 1 : Joueur très actif (rôle important, parle 4× par jour pendant 7 jours)
+
+- **Entrées (cached input)** :
+  `7 jours × 4 interventions × 1 130 tokens = 31 640 tokens`
+
+- **Sorties (réponses LLM)** :
+  `7 jours × 4 réponses × 47 tokens = 1 316 tokens`
+
+Coût total estimé :
+Input (cached) : (0,5 $ / 1 000 000) × 31 640 = 0,01582 $
+Output : (8 $ / 1 000 000) × 1 316 = 0,01053 $
+👉 Total ≈ **0,02635 $ ≈ 0,03 $**
+
+---
+
+#### 🧑‍🌾 Cas 2 : Joueur peu actif (villageois, ne parle pas, seulement vote)
+
+- **Entrées (standard input)** :
+  `7 jours × 4 appels × 800 tokens = 22 400 tokens`
+
+- **Sorties (réponses LLM)** :
+  `7 jours × 4 réponses × 47 tokens = 1 316 tokens`
+
+Coût total estimé :
+Input (standard) : (2 $ / 1 000 000) × 22 400 = 0,0448 $
+Output : (8 $ / 1 000 000) × 1 316 = 0,01053 $
+👉 Total ≈ **0,05533 $ ≈ 0,06 $**
+
+---
 
 Source : https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them
          https://platform.openai.com/docs/pricing
+---
+## Question 2 : Comment évaluer notre modèle
+Pour évaluer notre modèle, nous avons observé plusieurs parties jouées par les LLM et analysé leur comportement manuellement. L'évaluation s'est faite en deux volets principaux :
+
+1. Vérification des règles du jeu :
+- Le modèle vote uniquement pour des joueurs encore en vie.
+- Il respecte les règles (pas d’erreur de phase, de rôle ou de prise de parole).
+- Il suit les contraintes du jeu (interruption limitée, cohérence des votes, etc.).
+
+2. Vérification des interactions :
+- Les discours sont cohérents et adaptés au contexte de la partie.
+- Il ne dit pas de choses fausses (ex. : inventer des votes ou des événements).
+- Il adapte son comportement à son rôle (discret s’il est loup, affirmatif s’il est voyante, etc.).
+
+Cette méthode, bien que manuelle, nous a permis d’identifier et corriger de nombreuses incohérences, et d'améliorer progressivement le comportement du modèle.
+
+### Limites de l’évaluation :
+Un problème majeur est que tous les joueurs étaient contrôlés par le même type de LLM, ce qui rend difficile de juger la performance réelle du modèle face à d’autres IA ou à des humains. Ainsi, on ne peut pas encore prédire comment il réagirait dans un environnement plus varié ou compétitif.
 
 
 
 
-# LLM Garous
+
+
+
+
+
+
+
 
 <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/2/2c/Loups-garous_de_Thiercelieux.png/500px-Loups-garous_de_Thiercelieux.png" width="200"/>
 
