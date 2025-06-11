@@ -15,9 +15,8 @@ Voici une **estimation approximative** du coût de notre modèle selon les cas d
 
 - Coûts pour 1 000 000 de tokens avec **GPT-4.1** (`gpt-4.1-2025-04-14`) :
   - **Input** : 2,00 $ / 1M tokens
-  - **Cached input** : 0,50 $ / 1M tokens
+  - **Cached input** : 0,50 $ / 1M tokens (1024 tokens minimum)
   - **Output** : 8,00 $ / 1M tokens
-
 ---
 
 ### 🔢 Estimations de conversion des mots en tokens :
@@ -25,7 +24,6 @@ Voici une **estimation approximative** du coût de notre modèle selon les cas d
 - 1 token ≈ 4 caractères en anglais
 - 1 token ≈ ¾ mots
 - 100 tokens ≈ 75 mots
-- 
 Formule pratique :
 **Nombre de tokens ≈ nombre de mots × 1,33**
 
