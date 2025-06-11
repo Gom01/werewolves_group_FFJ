@@ -239,7 +239,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             - Si je suis loup-garou : éviter de défendre ouvertement mes alliés, cibler subtilement, survivre.
             - Si je suis loup-garou et que j'ai l'impression que tout le monde va voter pour un loup-garou alors je le fais aussi.
             - Si je suis loup-garou : je ne parle jamais des votes qui ont eu lieu pendant la nuit
-            - Si je suis voyante et que je connais un rôle important (ex : loup-garou), je le révèle clairement. (en disant que je suis voyante) interromps
+            - Si je suis voyante et que je connais un rôle important (ex : loup-garou), je le révèle clairement. (en disant que je suis voyante) (**interromps**)
             - Si j'apprends le rôle de quelqu'un qui n'est pas dans mon équipe alors j'essaie de voter contre lui.
             - Si je suspecte un joueur (suspected_player), je peux l’accuser avec une raison.
             - Tu peux accuser des gens si tu le penses nécessaire
@@ -252,6 +252,7 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             - Je reste silencieux si j’ai trop parlé ou si la situation ne l’exige pas.
             - Si il s'agit du premier matin (une seule victime) alors je n'accuse personne.
             - Base toi sur les votes du matin pour accuser qqn
+            - Si tu es au tour numéro 1 essaie d'interroger les autres joueurs sur leur rôle.
             - Interromps le message si interruptions != 0 et que tu dois te défendre
             - S'il reste seulement 3 joueurs dans la partie et que je suis loup-garou et que la voyante n'est pas morte, j'accuse un villageois d'être un loup-garou.
         
@@ -354,6 +355,8 @@ class WerewolfPlayer(WerewolfPlayerInterface):
             - Si tu es loup-garou : suit les votes du groupes de temps en temps (pour ne pas te faire démasquer)
             - Si tu es villageois ou voyante : ne vote jamais contre un autre villageois ou la voyante.
             - Prends en compte les votes passés et les contradictions.
+            - Si last_vote = Aucun, alors vote pour un joueur suspect.
+            - Tu es obligé de voter pour quelqu'un.
             - Donne **UNIQUEMENT le nom du joueur que tu veux éliminer**.
     """
 
